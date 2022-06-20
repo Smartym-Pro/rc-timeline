@@ -16,17 +16,17 @@ export type OnEventClickData = CalendarEvent;
 export type OnNewEventClickData = NewEventClickData;
 export type OnEventDragFinish = OnEventDragFinishFunc;
 
-export interface KalendProps {
+export interface TimelineProps {
   items?: CalendarEvent[];
   onNewEventClick?: OnNewEventClickFunc;
   onEventClick?: OnEventClickFunc;
   onEventDragFinish?: OnEventDragFinishFunc;
   onDeleteEvent?: OnDeleteEventFunc;
-  startsFromTop?: boolean;
+  sortDirection?: 'ASC' | 'DESC'; 
 }
 
 // use any as JSX was causing errors for some cases
-const Kalend = (props: KalendProps) => {
+const Timeline = (props: TimelineProps) => {
   // basic validation
   return (
     <div className="Kalend__Calendar__root Kalend__main">
@@ -41,4 +41,4 @@ const Kalend = (props: KalendProps) => {
   );
 };
 
-export default Kalend;
+export default Timeline;

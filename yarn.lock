@@ -2183,7 +2183,7 @@
   dependencies:
     "@parcel/plugin" "2.6.1"
 
-"@parcel/plugin@2.6.1", "@parcel/plugin@^2.0.1":
+"@parcel/plugin@2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@parcel/plugin/-/plugin-2.6.1.tgz#7de4bf6774d5ea70f3879581bed3489f85749d97"
   integrity sha512-0QVS7mhrS9gGHtaT0KpPes2CCCAyPvvI2oZLq+NX3z7Qa73kj3Ct5QL2JuRywnefDVnkY79256oTdsq/nJrnXg==
@@ -2401,18 +2401,19 @@
     posthtml-render "^3.0.0"
     semver "^5.7.1"
 
-"@parcel/transformer-typescript-types@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.0.1.tgz#b4016c15ecd421273a2986bd1105fa58a43bf6ca"
-  integrity sha512-iFqj0GD/fQms5uXgKru+OJgTDvRMy8+doH3tf/PhDZwjgSTYyYSAJs2ZnZJX3GShSlVCLKwXnC5WiA/w13yzEw==
+"@parcel/transformer-typescript-types@2.6.1":
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-typescript-types/-/transformer-typescript-types-2.6.1.tgz#2f92e157d81dda9d27ce164112ab1f39c089591f"
+  integrity sha512-OMYeKUCm/vIcgt9WM1lk8jcmJWIltZCh5ETSDG7fK+KCpLz/y1exr1v32+17zOl+KmpH1hN3Pk7el0720mYrVg==
   dependencies:
-    "@parcel/diagnostic" "^2.0.1"
-    "@parcel/plugin" "^2.0.1"
+    "@parcel/diagnostic" "2.6.1"
+    "@parcel/plugin" "2.6.1"
     "@parcel/source-map" "^2.0.0"
-    "@parcel/ts-utils" "^2.0.1"
+    "@parcel/ts-utils" "2.6.1"
+    "@parcel/utils" "2.6.1"
     nullthrows "^1.1.1"
 
-"@parcel/ts-utils@^2.0.1":
+"@parcel/ts-utils@2.6.1":
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/@parcel/ts-utils/-/ts-utils-2.6.1.tgz#cd04ef1b776fd1808d8562ee788476c98f9fd858"
   integrity sha512-XU/McUIVw5bcuKCt+gSSn11lgqWO6IHe//9qqjSFi3e+lDbr2p+evbA2cUDmkw8hNfC8ouX5cmRzO1TXlQW+yQ==

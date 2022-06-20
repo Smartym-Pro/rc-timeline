@@ -1,17 +1,12 @@
-interface CalendarEvent {
+export interface CalendarEvent {
     id?: string;
     startAt?: string;
     endAt?: string;
     summary?: string;
-}
-interface Item {
-    summary: string;
-    startDate?: string;
-    endDate?: string;
-    id?: string;
+    meta?: any;
 }
 interface NewEventClickData {
-    event: Item;
+    event: CalendarEvent;
     startAt?: string;
     endAt?: string;
 }
@@ -19,24 +14,18 @@ type OnEventClickFunc = (data: CalendarEvent, e: React.MouseEvent<HTMLElement>) 
 type OnEventDragFinishFunc = (updatedEvent: CalendarEvent) => void;
 type OnDeleteEventFunc = (id: string) => void;
 type OnNewEventClickFunc = (data: NewEventClickData, e: React.MouseEvent<HTMLElement>) => void;
-interface _Item1 {
-    summary: string;
-    startDate?: string;
-    endDate?: string;
-    id?: string;
-}
-export type CalendarEventProps = CalendarEvent;
 export type OnEventClickData = CalendarEvent;
 export type OnNewEventClickData = NewEventClickData;
 export type OnEventDragFinish = OnEventDragFinishFunc;
-export interface KalendProps {
-    items?: _Item1[];
+export interface TimelineProps {
+    items?: CalendarEvent[];
     onNewEventClick?: OnNewEventClickFunc;
     onEventClick?: OnEventClickFunc;
     onEventDragFinish?: OnEventDragFinishFunc;
     onDeleteEvent?: OnDeleteEventFunc;
+    sortDirection?: 'ASC' | 'DESC';
 }
-declare const Kalend: (props: KalendProps) => JSX.Element;
-export default Kalend;
+declare const Timeline: (props: TimelineProps) => JSX.Element;
+export default Timeline;
 
 //# sourceMappingURL=index.d.ts.map

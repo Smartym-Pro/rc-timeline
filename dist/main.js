@@ -1,12 +1,12 @@
-var $djxuo$swchelperslib_object_spreadjs = require("@swc/helpers/lib/_object_spread.js");
-var $djxuo$swchelperslib_object_spread_propsjs = require("@swc/helpers/lib/_object_spread_props.js");
-var $djxuo$reactjsxruntime = require("react/jsx-runtime");
-var $djxuo$react = require("react");
-var $djxuo$swchelperslib_sliced_to_arrayjs = require("@swc/helpers/lib/_sliced_to_array.js");
-var $djxuo$swchelperslib_object_without_propertiesjs = require("@swc/helpers/lib/_object_without_properties.js");
-var $djxuo$luxon = require("luxon");
-var $djxuo$swchelperslib_define_propertyjs = require("@swc/helpers/lib/_define_property.js");
-var $djxuo$swchelperslib_to_consumable_arrayjs = require("@swc/helpers/lib/_to_consumable_array.js");
+var $cw6c3$swchelperslib_object_spreadjs = require("@swc/helpers/lib/_object_spread.js");
+var $cw6c3$swchelperslib_object_spread_propsjs = require("@swc/helpers/lib/_object_spread_props.js");
+var $cw6c3$reactjsxruntime = require("react/jsx-runtime");
+var $cw6c3$react = require("react");
+var $cw6c3$swchelperslib_sliced_to_arrayjs = require("@swc/helpers/lib/_sliced_to_array.js");
+var $cw6c3$swchelperslib_object_without_propertiesjs = require("@swc/helpers/lib/_object_without_properties.js");
+var $cw6c3$luxon = require("luxon");
+var $cw6c3$swchelperslib_define_propertyjs = require("@swc/helpers/lib/_define_property.js");
+var $cw6c3$swchelperslib_to_consumable_arrayjs = require("@swc/helpers/lib/_to_consumable_array.js");
 
 function $parcel$interopDefault(a) {
   return a && a.__esModule ? a.default : a;
@@ -20,7 +20,7 @@ function $parcel$export(e, n, v, s) {
 
 $parcel$defineInteropFlag(module.exports);
 
-$parcel$export(module.exports, "default", function () { return $07b3aec454e0d712$export$2e2bcd8739ae039; });
+$parcel$export(module.exports, "default", function () { return $3f7b2fe5d2c34f8f$export$2e2bcd8739ae039; });
 
 
 
@@ -35,17 +35,17 @@ $parcel$export(module.exports, "default", function () { return $07b3aec454e0d712
 
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
-var $f246cba80f0a1dbc$var$emptyFunction = function() {};
-var $f246cba80f0a1dbc$export$96e2a2f386b0b376 = function(props) {
+var $3886b97a1526edd3$var$emptyFunction = function() {};
+var $3886b97a1526edd3$export$96e2a2f386b0b376 = function(props) {
     return {
         onEventDragFinish: props.onEventDragFinish || undefined,
-        onEventClick: props.onEventClick || $f246cba80f0a1dbc$var$emptyFunction,
-        onNewEventClick: props.onNewEventClick || $f246cba80f0a1dbc$var$emptyFunction,
-        onDeleteClick: props.onDeleteEvent || $f246cba80f0a1dbc$var$emptyFunction
+        onEventClick: props.onEventClick || $3886b97a1526edd3$var$emptyFunction,
+        onNewEventClick: props.onNewEventClick || $3886b97a1526edd3$var$emptyFunction,
+        onDeleteClick: props.onDeleteEvent || $3886b97a1526edd3$var$emptyFunction
     };
 };
-var $f246cba80f0a1dbc$var$ConfigLayer = function(props) {
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
+var $3886b97a1526edd3$var$ConfigLayer = function(props) {
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
     var setContext = function(type, payload) {
         dispatch({
             type: type,
@@ -53,30 +53,31 @@ var $f246cba80f0a1dbc$var$ConfigLayer = function(props) {
         });
     };
     var initFromProps = function() {
-        var callbacks = $f246cba80f0a1dbc$export$96e2a2f386b0b376(props);
+        var callbacks = $3886b97a1526edd3$export$96e2a2f386b0b376(props);
         setContext("callbacks", callbacks);
+        setContext("isAsc", props.sortDirection === "ASC" ? true : false);
     };
-    (0, $djxuo$react.useEffect)(function() {
+    (0, $cw6c3$react.useEffect)(function() {
         initFromProps();
     }, []);
-    (0, $djxuo$react.useEffect)(function() {
+    (0, $cw6c3$react.useEffect)(function() {
         initFromProps();
     }, []);
     return props.children;
 };
-var $f246cba80f0a1dbc$export$2e2bcd8739ae039 = $f246cba80f0a1dbc$var$ConfigLayer;
+var $3886b97a1526edd3$export$2e2bcd8739ae039 = $3886b97a1526edd3$var$ConfigLayer;
 
 
 
 
 
 
-var $00e4595f061b0916$export$190d6a2573aa8371 = function() {
-    var start = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : -36, finish = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0, scaleCoeff = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
+var $bf7b38bce41ca3dd$export$190d6a2573aa8371 = function(start, finish) {
+    var scaleCoeff = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
     var monthResult = [];
     var offset = 0;
     for(var i = start; i <= finish; i++){
-        var resultDate = (0, $djxuo$luxon.DateTime).local().plus({
+        var resultDate = (0, $cw6c3$luxon.DateTime).local().plus({
             months: i
         });
         var monthHeight = resultDate.daysInMonth * scaleCoeff;
@@ -91,23 +92,24 @@ var $00e4595f061b0916$export$190d6a2573aa8371 = function() {
 };
 
 
-var $ad08db1a8b036c20$var$getHeight = function(start, finish, scaleCoeff) {
-    var verticalMonths = (0, $00e4595f061b0916$export$190d6a2573aa8371)(start, finish, scaleCoeff);
+var $e7acfb653c6fbfca$export$c08559766941f856 = function(start, finish, scaleCoeff) {
+    var verticalMonths = (0, $bf7b38bce41ca3dd$export$190d6a2573aa8371)(start, finish, scaleCoeff);
+    if (!verticalMonths.length) return 0;
     return verticalMonths[verticalMonths.length - 1].offset + verticalMonths[verticalMonths.length - 1].monthHeight;
 };
-var $ad08db1a8b036c20$var$Reducer = function(state, action) {
+var $e7acfb653c6fbfca$var$Reducer = function(state, action) {
     switch(action.type){
         case "finishStep":
             var nextFinishStep = state.finishStep + action.payload;
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 finishStep: nextFinishStep,
-                height: $ad08db1a8b036c20$var$getHeight(state.startStep, nextFinishStep, state.scaleCoeff)
+                height: $e7acfb653c6fbfca$export$c08559766941f856(state.startStep, nextFinishStep, state.scaleCoeff)
             });
         case "startStep":
             var nextStartStep = state.startStep + action.payload;
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 startStep: nextStartStep,
-                height: $ad08db1a8b036c20$var$getHeight(nextStartStep, state.finishStep, state.scaleCoeff)
+                height: $e7acfb653c6fbfca$export$c08559766941f856(nextStartStep, state.finishStep, state.scaleCoeff)
             });
         case "scaleCoeff":
             //const oldCoeff = state.scaleCoeff;
@@ -115,58 +117,67 @@ var $ad08db1a8b036c20$var$Reducer = function(state, action) {
             //const coeffChange = oldCoeff / scaleCoeff;
             //const startStep = Math.ceil(state.startStep * coeffChange);
             //const finishStep = Math.ceil(state.finishStep * coeffChange);
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 scaleCoeff: scaleCoeff,
-                height: $ad08db1a8b036c20$var$getHeight(state.startStep, state.finishStep, scaleCoeff)
+                height: $e7acfb653c6fbfca$export$c08559766941f856(state.startStep, state.finishStep, scaleCoeff)
             });
         case "style":
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 style: action.payload
             });
         case "events":
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 events: action.payload
             });
         case "width":
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 width: action.payload
             });
         case "height":
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 height: action.payload
             });
         case "callbacks":
-            return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), {
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 callbacks: action.payload
+            });
+        case "isAsc":
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
+                isAsc: action.payload != null ? action.payload : !state.isAsc
             });
         default:
             return state;
     }
 };
-var $ad08db1a8b036c20$export$2e2bcd8739ae039 = $ad08db1a8b036c20$var$Reducer;
+var $e7acfb653c6fbfca$export$2e2bcd8739ae039 = $e7acfb653c6fbfca$var$Reducer;
 
 
 
-var $29b6648a04437a19$export$841858b892ce1f4c = /*#__PURE__*/ (0, $djxuo$react.createContext)({});
-var $29b6648a04437a19$var$StoreProvider = function(_param) {
-    var children = _param.children, props = (0, ($parcel$interopDefault($djxuo$swchelperslib_object_without_propertiesjs)))(_param, [
+
+var $65553fbba1d6d65b$export$841858b892ce1f4c = /*#__PURE__*/ (0, $cw6c3$react.createContext)({});
+var $65553fbba1d6d65b$var$START_MONTH = -24;
+var $65553fbba1d6d65b$var$END_MONTH = 0;
+var $65553fbba1d6d65b$var$SCALE_COEFF = 1;
+var $65553fbba1d6d65b$var$StoreProvider = function(_param) {
+    var children = _param.children, props = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_without_propertiesjs)))(_param, [
         "children"
     ]);
     var initialContext = {
-        startStep: -36,
-        finishStep: 0,
-        scaleCoeff: 1,
+        startStep: $65553fbba1d6d65b$var$START_MONTH,
+        finishStep: $65553fbba1d6d65b$var$END_MONTH,
+        scaleCoeff: $65553fbba1d6d65b$var$SCALE_COEFF,
         width: 0,
-        height: 0,
-        callbacks: (0, $f246cba80f0a1dbc$export$96e2a2f386b0b376)({}),
+        height: (0, $e7acfb653c6fbfca$export$c08559766941f856)($65553fbba1d6d65b$var$START_MONTH, $65553fbba1d6d65b$var$END_MONTH, $65553fbba1d6d65b$var$SCALE_COEFF),
+        callbacks: (0, $3886b97a1526edd3$export$96e2a2f386b0b376)({}),
+        isAsc: true,
         style: {
             primaryColor: "#ec407a",
             baseColor: "#424242FF",
             inverseBaseColor: "#E5E5E5FF"
         }
     };
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useReducer)((0, $ad08db1a8b036c20$export$2e2bcd8739ae039), initialContext), 2), store = ref[0], dispatch = ref[1];
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)($29b6648a04437a19$export$841858b892ce1f4c.Provider, {
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useReducer)((0, $e7acfb653c6fbfca$export$2e2bcd8739ae039), initialContext), 2), store = ref[0], dispatch = ref[1];
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)($65553fbba1d6d65b$export$841858b892ce1f4c.Provider, {
         value: [
             store,
             dispatch
@@ -174,16 +185,12 @@ var $29b6648a04437a19$var$StoreProvider = function(_param) {
         children: children
     });
 };
-var $29b6648a04437a19$export$2e2bcd8739ae039 = $29b6648a04437a19$var$StoreProvider;
+var $65553fbba1d6d65b$export$2e2bcd8739ae039 = $65553fbba1d6d65b$var$StoreProvider;
 
 
 
-var $022f5b4afae53e21$export$eae15a231de23f4a = 25;
-var $022f5b4afae53e21$export$447c5938f45c45a5 = 90;
-
-
-
-
+var $88a08af890f49243$export$eae15a231de23f4a = 25;
+var $88a08af890f49243$export$447c5938f45c45a5 = 90;
 
 
 
@@ -192,29 +199,28 @@ var $022f5b4afae53e21$export$447c5938f45c45a5 = 90;
 
 
 
-var $35d188a81a4302e1$var$renderHours = function(width, startStep, finishStep, scaleCoeff) {
-    var verticalHours = (0, $00e4595f061b0916$export$190d6a2573aa8371)(startStep, finishStep, scaleCoeff);
+
+
+
+
+var $49057570f1744f71$var$renderHours = function(width, startStep, finishStep, scaleCoeff, isAsc) {
+    var verticalHours = (0, $bf7b38bce41ca3dd$export$190d6a2573aa8371)(startStep, finishStep, scaleCoeff);
     var yearOffsets = verticalHours.reduce(function(res, item) {
-        var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))(item.label.split(" "), 1), key = ref[0];
-        return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($djxuo$swchelperslib_define_propertyjs)))({}, key, item.offset));
+        var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))(item.label.split(" "), 1), key = ref[0];
+        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, key, item.offset));
     }, {});
     var yearOffsetsEntries = Object.entries(yearOffsets);
     var yearHeights = yearOffsetsEntries.reduce(function(res, param, index) {
-        var _param = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))(param, 2), year = _param[0], offset = _param[1];
-        var style = {
-            top: index === 0 ? 0 : yearOffsetsEntries[index - 1][1],
-            height: index === 0 ? offset : offset - yearOffsetsEntries[index - 1][1],
-            left: 0,
-            display: "flex",
-            alignItems: "center"
-        };
-        return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($djxuo$swchelperslib_define_propertyjs)))({}, year, {
+        var _param = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))(param, 2), year = _param[0], offset = _param[1];
+        var _obj;
+        var style = (_obj = {}, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, isAsc ? "top" : "bottom", index === 0 ? isAsc ? 0 : offset : yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "height", index === 0 ? offset : offset - yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "left", 0), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "display", "flex"), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "alignItems", "center"), _obj);
+        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, year, {
             style: style
         }));
     }, {});
     var years = Object.entries(yearHeights).map(function(param, index) {
-        var _param = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))(param, 2), year = _param[0], item = _param[1];
-        return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+        var _param = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))(param, 2), year = _param[0], item = _param[1];
+        return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
             style: item.style,
             className: "Kalend__text Kalend__calendarBodyMonths__text",
             children: year
@@ -222,41 +228,37 @@ var $35d188a81a4302e1$var$renderHours = function(width, startStep, finishStep, s
     });
     var months = verticalHours.map(function(param) {
         var label = param.label, offset = param.offset, monthHeight = param.monthHeight;
-        return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+        var _obj, _obj1, _obj2;
+        return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
             className: "Kalend__calendarBodyMonths__container",
-            style: {
+            style: (_obj = {
                 minHeight: monthHeight
-            },
+            }, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, isAsc ? "top" : "bottom", offset), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "position", "absolute"), _obj),
             children: [
-                /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("p", {
+                /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("p", {
                     className: "Kalend__text Kalend__calendarBodyMonths__text",
-                    style: {
-                        top: offset - 4,
-                        left: 30
-                    },
+                    style: (_obj1 = {}, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj1, isAsc ? "top" : "bottom", -4), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj1, "left", 30), _obj1),
                     children: scaleCoeff >= 0.25 && label.split(" ")[1]
                 }),
-                /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+                /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                     className: "Kalend__text Kalend__calendarBodyMonths__line",
-                    style: {
-                        width: width - (0, $022f5b4afae53e21$export$447c5938f45c45a5)
-                    }
+                    style: (_obj2 = {}, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj2, isAsc ? "top" : "bottom", 0), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj2, "width", width - (0, $88a08af890f49243$export$447c5938f45c45a5)), _obj2)
                 })
             ]
         }, label);
     });
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)((0, $djxuo$reactjsxruntime.Fragment), {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)((0, $cw6c3$reactjsxruntime.Fragment), {
         children: [
             years,
             months
         ]
     });
 };
-var $35d188a81a4302e1$var$CalendarBodyMonths = function() {
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 1), store = ref[0];
-    var width = store.width, startStep = store.startStep, finishStep = store.finishStep, height = store.height, scaleCoeff = store.scaleCoeff;
-    var hours = $35d188a81a4302e1$var$renderHours(width, startStep, finishStep, scaleCoeff);
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+var $49057570f1744f71$var$CalendarBodyMonths = function() {
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 1), store = ref[0];
+    var width = store.width, startStep = store.startStep, finishStep = store.finishStep, height = store.height, scaleCoeff = store.scaleCoeff, isAsc = store.isAsc;
+    var hours = $49057570f1744f71$var$renderHours(width, startStep, finishStep, scaleCoeff, isAsc);
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
         className: "Kalend__calendarBodyMonths__wrapper",
         style: {
             height: height,
@@ -265,13 +267,14 @@ var $35d188a81a4302e1$var$CalendarBodyMonths = function() {
         children: hours
     });
 };
-var $35d188a81a4302e1$export$2e2bcd8739ae039 = $35d188a81a4302e1$var$CalendarBodyMonths;
+var $49057570f1744f71$export$2e2bcd8739ae039 = $49057570f1744f71$var$CalendarBodyMonths;
 
 
 
 
 
-var $6cb9f4b43772a84e$export$2b35b885b699e674 = {
+
+var $79dca703cc699b4f$export$2b35b885b699e674 = {
     dragging: false,
     initialTop: 0,
     initialLeft: 0,
@@ -285,7 +288,7 @@ var $6cb9f4b43772a84e$export$2b35b885b699e674 = {
     isDragging: false,
     endAt: undefined
 };
-var $6cb9f4b43772a84e$export$6da1c85d7de31b61 = function(e) {
+var $79dca703cc699b4f$export$6da1c85d7de31b61 = function(e) {
     var ref, ref1;
     var touches = (ref = e.nativeEvent) === null || ref === void 0 ? void 0 : (ref1 = ref.touches) === null || ref1 === void 0 ? void 0 : ref1[0];
     return !!touches;
@@ -301,7 +304,7 @@ var $6cb9f4b43772a84e$export$6da1c85d7de31b61 = function(e) {
 
 
 
-var $b671249b808468d8$export$8c6a352b48fd8d92 = function(e, draggingRef, eventWasChangedRef, offsetTopRef, setState) {
+var $eaa81b90f81362ff$export$8c6a352b48fd8d92 = function(e, draggingRef, eventWasChangedRef, offsetTopRef, setState) {
     var ref, ref1;
     if (!draggingRef.current) return;
     // Get column element for day, where event is placed
@@ -322,7 +325,7 @@ var $b671249b808468d8$export$8c6a352b48fd8d92 = function(e, draggingRef, eventWa
     setState("offsetTop", y);
     offsetTopRef.current = y;
 };
-var $b671249b808468d8$export$a8520376571bd6a0 = function(e, endAtRef, offsetTop, startStep, setState) {
+var $eaa81b90f81362ff$export$a8520376571bd6a0 = function(e, endAtRef, offsetTop, startStep, setState) {
     var ref, ref2;
     // Get column element for day, where event is placed
     var drawPanelElement = document.getElementById("Kalend__draw-panel");
@@ -346,14 +349,14 @@ var $b671249b808468d8$export$a8520376571bd6a0 = function(e, endAtRef, offsetTop,
 
 
 
-var $c3e13f4dc5db02e2$var$ButtonBase = function(props) {
+var $f7dc25aaa4235907$var$ButtonBase = function(props) {
     var id = props.id, onClick = props.onClick, className = props.className, style = props.style, children = props.children, onMouseDown = props.onMouseDown, onMouseUp = props.onMouseUp;
-    var buttonRef = (0, $djxuo$react.useRef)(null);
+    var buttonRef = (0, $cw6c3$react.useRef)(null);
     var onButtonClick = function(e) {
         if (onClick) onClick(e);
     };
     var buttonClassName = "Kalend__button ".concat(className, " Kalend__ButtonBase");
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
         id: id,
         ref: buttonRef,
         onClick: onButtonClick,
@@ -364,93 +367,92 @@ var $c3e13f4dc5db02e2$var$ButtonBase = function(props) {
         children: children
     });
 };
-var $c3e13f4dc5db02e2$export$2e2bcd8739ae039 = $c3e13f4dc5db02e2$var$ButtonBase;
+var $f7dc25aaa4235907$export$2e2bcd8739ae039 = $f7dc25aaa4235907$var$ButtonBase;
 
 
 
 
-
-var $fa3231f0e5880005$var$EventSummary = function(props) {
+var $8304c40ecd0ca62c$var$EventSummary = function(props) {
     var summary = props.summary;
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("p", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("p", {
         className: "Kalend__text Kalend__Event__summary Kalend__text-light",
         dangerouslySetInnerHTML: {
             __html: summary || ""
         }
     });
 };
-var $fa3231f0e5880005$export$2e2bcd8739ae039 = $fa3231f0e5880005$var$EventSummary;
+var $8304c40ecd0ca62c$export$2e2bcd8739ae039 = $8304c40ecd0ca62c$var$EventSummary;
 
 
 
-var $c094587391c6e1b0$var$EventNormal = function(props) {
+var $05400c9842705755$var$EventNormal = function(props) {
     var event = props.event;
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
         style: {
             display: "flex",
             flexDirection: "column",
             maxWidth: "-webkit-fill-available"
         },
-        children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $fa3231f0e5880005$export$2e2bcd8739ae039), {
+        children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $8304c40ecd0ca62c$export$2e2bcd8739ae039), {
             summary: event.summary
         })
     });
 };
-var $c094587391c6e1b0$export$2e2bcd8739ae039 = $c094587391c6e1b0$var$EventNormal;
+var $05400c9842705755$export$2e2bcd8739ae039 = $05400c9842705755$var$EventNormal;
 
 
 
 
 
-var $31dde7e07e0872e1$var$StateReducer = function(state, action) {
+var $66c3795c5fc7507d$var$StateReducer = function(state, action) {
     // Replace whole state
-    if (!action.payload) return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state, action);
+    if (!action.payload) return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state, action);
     var _payload = action.payload, stateName = _payload.stateName, type = _payload.type, data = _payload.data;
     type;
-    return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, state), (0, ($parcel$interopDefault($djxuo$swchelperslib_define_propertyjs)))({}, stateName, data));
+    return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, stateName, data));
 };
-var $31dde7e07e0872e1$export$2e2bcd8739ae039 = $31dde7e07e0872e1$var$StateReducer;
+var $66c3795c5fc7507d$export$2e2bcd8739ae039 = $66c3795c5fc7507d$var$StateReducer;
 
 
 
 
 
 
-var $205a253d75d8dc87$var$findIntersectedTop = function(sizes, offsetTop, i) {
+var $f35790b60c4d4b59$var$findIntersectedTop = function(sizes, offsetTop, i) {
     return sizes.filter(function(size, index) {
         return index < i && size.offsetTop <= offsetTop && size.offsetTop + size.height > offsetTop;
     }).sort(function(a, b) {
         return a.offsetTop - b.offsetTop;
     });
 };
-var $205a253d75d8dc87$var$findNonIntersectedOnPreviousLine = function(sizes, offsetTop, previous) {
+var $f35790b60c4d4b59$var$findNonIntersectedOnPreviousLine = function(sizes, offsetTop, previous) {
     var onPrevousLine = sizes.filter(function(size) {
         return size.offsetTop + size.height <= offsetTop;
     }).sort(function(a, b) {
         return parseInt(a.offsetLeft) - parseInt(b.offsetLeft);
     });
-    return previous.offsetTop + previous.height < offsetTop ? (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(onPrevousLine).concat([
+    return previous.offsetTop + previous.height < offsetTop ? (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(onPrevousLine).concat([
         previous
     ]) : onPrevousLine;
 };
-var $205a253d75d8dc87$var$getLeftAndHeight = function(sizesWithTop) {
-    var sizes = (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(sizesWithTop).sort(function(a, b) {
+var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
+    var sizes = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizesWithTop).sort(function(a, b) {
         return a.offsetTop - b.offsetTop;
     });
     sizes.forEach(function(size1, i1) {
-        var intersectedWithYou = $205a253d75d8dc87$var$findIntersectedTop(sizes, size1.offsetTop, i1);
+        var intersectedWithYou = $f35790b60c4d4b59$var$findIntersectedTop(sizes, size1.offsetTop, i1);
         if (!i1 || !intersectedWithYou.length) return;
         else {
             if (intersectedWithYou && intersectedWithYou[intersectedWithYou.length - 1].width === "100%") {
                 var newLength = 100 / (intersectedWithYou.length + 1);
                 var sizesToReplace = intersectedWithYou.map(function(item, i) {
-                    return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, item), {
+                    return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
                         width: "".concat(newLength, "%"),
                         offsetLeft: "".concat(i * newLength, "%")
                     });
                 });
-                sizesToReplace = (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(sizesToReplace).concat([
-                    (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, size1), {
+                sizesToReplace = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizesToReplace).concat([
+                    (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size1), {
                         offsetLeft: "".concat(intersectedWithYou.length * newLength, "%"),
                         width: "".concat(newLength, "%")
                     })
@@ -462,19 +464,19 @@ var $205a253d75d8dc87$var$getLeftAndHeight = function(sizesWithTop) {
                     return replacedSize || size;
                 });
             } else if (intersectedWithYou && intersectedWithYou[intersectedWithYou.length - 1].width !== "100%") {
-                var intersectedWithPrevious = $205a253d75d8dc87$var$findIntersectedTop(sizes, sizes[i1 - 1].offsetTop, i1);
-                var nonIntersectedOnPreviousLine = $205a253d75d8dc87$var$findNonIntersectedOnPreviousLine(intersectedWithPrevious, size1.offsetTop, sizes[i1 - 1]);
-                if (nonIntersectedOnPreviousLine === null || nonIntersectedOnPreviousLine === void 0 ? void 0 : nonIntersectedOnPreviousLine.length) sizes[i1] = (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, sizes[i1]), {
+                var intersectedWithPrevious = $f35790b60c4d4b59$var$findIntersectedTop(sizes, sizes[i1 - 1].offsetTop, i1);
+                var nonIntersectedOnPreviousLine = $f35790b60c4d4b59$var$findNonIntersectedOnPreviousLine(intersectedWithPrevious, size1.offsetTop, sizes[i1 - 1]);
+                if (nonIntersectedOnPreviousLine === null || nonIntersectedOnPreviousLine === void 0 ? void 0 : nonIntersectedOnPreviousLine.length) sizes[i1] = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, sizes[i1]), {
                     offsetLeft: nonIntersectedOnPreviousLine[0].offsetLeft,
                     width: nonIntersectedOnPreviousLine[0].width
                 });
                 else {
-                    var fullIntersected = (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
-                    var intersected = (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+                    var fullIntersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+                    var intersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
                     while(intersected && intersected.length){
                         var inter = intersected.map(function(param) {
                             var offsetTop = param.offsetTop, id = param.id;
-                            return $205a253d75d8dc87$var$findIntersectedTop(sizes, offsetTop, i1);
+                            return $f35790b60c4d4b59$var$findIntersectedTop(sizes, offsetTop, i1);
                         }).flat();
                         var exIds = fullIntersected.map(function(param) {
                             var id = param.id;
@@ -491,7 +493,7 @@ var $205a253d75d8dc87$var$getLeftAndHeight = function(sizesWithTop) {
                         var newWidth = Math.floor(100 / (Math.floor(100 / parseInt(oldWidth)) + 1));
                         var oldPos = parseInt(item.offsetLeft) / parseInt(oldWidth);
                         var newLeft = oldPos * newWidth;
-                        return (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, item), {
+                        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
                             offsetLeft: "".concat(newLeft, "%"),
                             width: "".concat(newWidth, "%")
                         });
@@ -503,8 +505,8 @@ var $205a253d75d8dc87$var$getLeftAndHeight = function(sizesWithTop) {
                         };
                         return res;
                     }, {});
-                    newSizes = (0, ($parcel$interopDefault($djxuo$swchelperslib_to_consumable_arrayjs)))(newSizes).concat([
-                        (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, size1, stylesForMe)
+                    newSizes = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(newSizes).concat([
+                        (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size1, stylesForMe)
                     ]);
                     sizes = sizes.map(function(size) {
                         var replacedSize = newSizes.find(function(item) {
@@ -518,24 +520,26 @@ var $205a253d75d8dc87$var$getLeftAndHeight = function(sizesWithTop) {
     });
     return sizes;
 };
-var $205a253d75d8dc87$export$5ea939eddc3fd41c = function(components, start) {
-    var scaleCoeff = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1;
+var $f35790b60c4d4b59$export$5ea939eddc3fd41c = function(components, start) {
+    var scaleCoeff = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1, isAsc = arguments.length > 3 ? arguments[3] : void 0, height = arguments.length > 4 ? arguments[4] : void 0;
     var sizesWithTop = components.map(function(param) {
-        var startDate = param.startDate, endDate = param.endDate, summary = param.summary, id = param.id;
+        var startDate = param.startAt, endDate = param.endAt, summary = param.summary, id = param.id;
         var dayZeros = {
             hour: 0,
             minute: 0,
             second: 0,
             millisecond: 0
         };
-        var calendarStart = (0, $djxuo$luxon.DateTime).local().plus({
+        var calendarStart = (0, $cw6c3$luxon.DateTime).local().plus({
             month: start
         }).startOf("month").set(dayZeros);
-        var startAt = startDate ? (0, $djxuo$luxon.DateTime).fromISO(startDate).startOf("month").set(dayZeros) : calendarStart;
-        var endAt = endDate ? (0, $djxuo$luxon.DateTime).fromISO(endDate).endOf("month").set(dayZeros) : calendarStart.endOf("month").set(dayZeros);
+        var startAt = startDate ? (0, $cw6c3$luxon.DateTime).fromISO(startDate).startOf("month").set(dayZeros) : calendarStart;
+        var endAt = endDate ? (0, $cw6c3$luxon.DateTime).fromISO(endDate).endOf("month").set(dayZeros) : calendarStart.endOf("month").set(dayZeros);
+        var offset = Math.round(startAt.diff(calendarStart, "day").days * scaleCoeff);
+        var eventHeight = Math.round(endAt.diff(startAt, "day").days * scaleCoeff);
         return {
-            offsetTop: Math.round(startAt.diff(calendarStart, "day").days * scaleCoeff),
-            height: Math.round(endAt.diff(startAt, "day").days * scaleCoeff),
+            offsetTop: isAsc ? offset + 1 : height - offset - eventHeight - 1,
+            height: eventHeight,
             offsetLeft: "0",
             width: "100%",
             endAt: endAt,
@@ -544,14 +548,18 @@ var $205a253d75d8dc87$export$5ea939eddc3fd41c = function(components, start) {
             id: id
         };
     });
-    return $205a253d75d8dc87$var$getLeftAndHeight(sizesWithTop);
+    return $f35790b60c4d4b59$var$getLeftAndHeight(sizesWithTop);
 };
-var $205a253d75d8dc87$export$4f0cc7427b5c4255 = function(value, start) {
-    var day = (0, $djxuo$luxon.DateTime).local().plus({
-        month: start
+var $f35790b60c4d4b59$export$4f0cc7427b5c4255 = function(value, store) {
+    var day = (0, $cw6c3$luxon.DateTime).local().plus({
+        month: store.startStep
     }).startOf("month");
+    var delta = store.isAsc ? value : store.height / store.scaleCoeff - value;
+    console.log(day.toISO(), delta, day.plus({
+        day: delta
+    }).toISO());
     return day.plus({
-        day: value
+        day: delta
     }).set({
         hour: 0,
         minute: 0,
@@ -562,11 +570,11 @@ var $205a253d75d8dc87$export$4f0cc7427b5c4255 = function(value, start) {
 
 
 // ref to cancel timout
-var $74a2177495433a8f$var$timeoutRef;
-var $74a2177495433a8f$var$EventButton = function(props) {
+var $b852c5f3008abacb$var$timeoutRef;
+var $b852c5f3008abacb$var$EventButton = function(props) {
     var item = props.item;
     //const event = item;
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useReducer)((0, $31dde7e07e0872e1$export$2e2bcd8739ae039), (0, $6cb9f4b43772a84e$export$2b35b885b699e674)), 2), state = ref[0], dispatchState = ref[1];
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useReducer)((0, $66c3795c5fc7507d$export$2e2bcd8739ae039), (0, $79dca703cc699b4f$export$2b35b885b699e674)), 2), state = ref[0], dispatchState = ref[1];
     var setState = function(stateName, data) {
         var payload = {
             stateName: stateName,
@@ -578,12 +586,12 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         });
     };
     // store values as refs to access them in event listener
-    var offsetTopRef = (0, $djxuo$react.useRef)(state.offsetTop);
-    var draggingRef = (0, $djxuo$react.useRef)(false);
-    var isResizing = (0, $djxuo$react.useRef)(false);
-    var eventWasChangedRef = (0, $djxuo$react.useRef)(false);
-    var endAtRef = (0, $djxuo$react.useRef)(null);
-    var ref1 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 1), store = ref1[0];
+    var offsetTopRef = (0, $cw6c3$react.useRef)(state.offsetTop);
+    var draggingRef = (0, $cw6c3$react.useRef)(false);
+    var isResizing = (0, $cw6c3$react.useRef)(false);
+    var eventWasChangedRef = (0, $cw6c3$react.useRef)(false);
+    var endAtRef = (0, $cw6c3$react.useRef)(null);
+    var ref1 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 1), store = ref1[0];
     var width = store.width, callbacks = store.callbacks;
     var onEventClick = callbacks.onEventClick, onEventDragFinish = callbacks.onEventDragFinish, onDeleteClick = callbacks.onDeleteClick;
     var columnWidth = width;
@@ -620,7 +628,7 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         setState("width", layout.width);
         setState("height", layout.height);
     };
-    (0, $djxuo$react.useEffect)(function() {
+    (0, $cw6c3$react.useEffect)(function() {
         setLayout(item);
     }, [
         item
@@ -633,15 +641,15 @@ var $74a2177495433a8f$var$EventButton = function(props) {
     var onResize = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e)) return;
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e)) return;
         isResizing.current = true;
-        (0, $b671249b808468d8$export$a8520376571bd6a0)(e, endAtRef, state.offsetTop, store.startStep, setState);
+        (0, $eaa81b90f81362ff$export$a8520376571bd6a0)(e, endAtRef, state.offsetTop, store.startStep, setState);
     };
     var onMove = function(e) {
         e.preventDefault();
         e.stopPropagation();
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e)) return;
-        (0, $b671249b808468d8$export$8c6a352b48fd8d92)(e, draggingRef, eventWasChangedRef, offsetTopRef, setState);
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e)) return;
+        (0, $eaa81b90f81362ff$export$8c6a352b48fd8d92)(e, draggingRef, eventWasChangedRef, offsetTopRef, setState);
     };
     var onMouseUpResize = function(e) {
         // clean listeners
@@ -649,11 +657,15 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         document.removeEventListener("mousemove", onResize, true);
         // add data to callback
         if (onEventDragFinish) {
-            var nextEndAt = endAtRef.current ? (0, $205a253d75d8dc87$export$4f0cc7427b5c4255)(endAtRef.current / store.scaleCoeff, store.startStep).endOf("month").toISO() : null;
-            var updatedEvent = (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, item), {
+            var nextEndAt = endAtRef.current ? (0, $f35790b60c4d4b59$export$4f0cc7427b5c4255)(endAtRef.current / store.scaleCoeff, store) : null;
+            var changes = store.isAsc ? {
                 startAt: item.startAt.startOf("month").toISO(),
-                endAt: nextEndAt || item.endAt.endOf("month").toISO()
-            });
+                endAt: nextEndAt.endOf("month").toISO() || item.endAt.endOf("month").toISO()
+            } : {
+                startAt: nextEndAt.startOf("month").toISO() || item.startAt().startOf("month").toISO(),
+                endAt: item.endAt.startOf("month").toISO()
+            };
+            var updatedEvent = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item, changes);
             onEventDragFinish(updatedEvent);
         }
         endAtRef.current = null;
@@ -670,7 +682,7 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         document.removeEventListener("mouseup", onMouseUp, true);
         document.removeEventListener("mousemove", onMove, true);
         // clear timeout
-        clearTimeout($74a2177495433a8f$var$timeoutRef);
+        clearTimeout($b852c5f3008abacb$var$timeoutRef);
         if (!eventWasChangedRef.current) {
             setState("offsetLeft", state.offsetLeft);
             setState("width", state.width);
@@ -687,7 +699,10 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         // add data to callback
         if (onEventDragFinish) {
             var newEvent = null;
-            var dayDelta = (offsetTopRef.current - item.offsetTop) / store.scaleCoeff;
+            var offsetY = store.isAsc ? offsetTopRef.current : store.height - offsetTopRef.current;
+            var elOffset = store.isAsc ? item.offsetTop : store.height - item.offsetTop;
+            var dayDelta = (offsetY - elOffset) / store.scaleCoeff;
+            console.log(dayDelta, offsetY, item.offsetTop);
             var newStartAt = item.startAt.plus({
                 day: dayDelta
             }).startOf("month");
@@ -697,7 +712,7 @@ var $74a2177495433a8f$var$EventButton = function(props) {
             var newEndAt = item.endAt.plus({
                 month: monthDelta
             }).endOf("month");
-            newEvent = (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, item), {
+            newEvent = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
                 startAt: newStartAt.toISO(),
                 endAt: newEndAt.toISO()
             });
@@ -707,7 +722,7 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         e.stopPropagation();
     };
     var onMouseDownResize = function(e) {
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e) || !onEventDragFinish) return;
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e) || !onEventDragFinish) return;
         e.preventDefault();
         e.stopPropagation();
         isResizing.current = true;
@@ -716,7 +731,7 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         document.addEventListener("mouseup", onMouseUpResize, true);
     };
     var onMouseDownLong = function(e) {
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e)) return;
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e)) return;
         setState("isDragging", true);
         draggingRef.current = true;
         e.preventDefault();
@@ -735,11 +750,11 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         e.stopPropagation();
         if (isResizing.current) return;
         // add timeout to differentiate from normal clicks
-        $74a2177495433a8f$var$timeoutRef = setTimeout(function() {
+        $b852c5f3008abacb$var$timeoutRef = setTimeout(function() {
             onMouseDownLong(e);
         }, 120);
     };
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)((0, $c3e13f4dc5db02e2$export$2e2bcd8739ae039), {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)((0, $f7dc25aaa4235907$export$2e2bcd8739ae039), {
         id: item.id,
         style: style,
         className: "Kalend__Event-normal ".concat(state.isDragging ? "Kalend__EventButton__elevation" : ""),
@@ -747,23 +762,23 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         onMouseDown: onMouseDown,
         onMouseUp: onMouseUp,
         children: [
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                 onClick: function(e) {
                     e.stopPropagation();
                     if (onDeleteClick) onDeleteClick(item.id);
                 },
                 children: "\xd7"
             }),
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $c094587391c6e1b0$export$2e2bcd8739ae039), {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $05400c9842705755$export$2e2bcd8739ae039), {
                 event: item
             }),
-            isResizing.current ? /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+            isResizing.current ? /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                 className: "Kalend__EventButton__resizing_wrapper",
                 onClick: function() {
                     isResizing.current = false;
                 }
             }) : null,
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                 style: {
                     position: "absolute",
                     bottom: 0,
@@ -784,37 +799,37 @@ var $74a2177495433a8f$var$EventButton = function(props) {
         ]
     });
 };
-var $74a2177495433a8f$export$2e2bcd8739ae039 = $74a2177495433a8f$var$EventButton;
+var $b852c5f3008abacb$export$2e2bcd8739ae039 = $b852c5f3008abacb$var$EventButton;
 
 
 
 
-var $7e06a8f7938e5477$var$renderEvents = function(dataset) {
+var $a4892b14d3d768fe$var$renderEvents = function(dataset) {
     return dataset.map(function(eventRaw) {
         var item = eventRaw;
-        return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $74a2177495433a8f$export$2e2bcd8739ae039), {
+        return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $b852c5f3008abacb$export$2e2bcd8739ae039), {
             item: eventRaw
         }, item.id);
     });
 };
-var $7e06a8f7938e5477$export$5c851bc642d7e5b8 = 4;
-var $7e06a8f7938e5477$var$EventsPanel = function(props) {
+var $a4892b14d3d768fe$export$5c851bc642d7e5b8 = 4;
+var $a4892b14d3d768fe$var$EventsPanel = function(props) {
     var data = props.data;
-    var ref6 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 1), store = ref6[0];
-    var width = store.width, callbacks = store.callbacks;
+    var ref6 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 1), store = ref6[0];
+    var width = store.width, callbacks = store.callbacks, isAsc = store.isAsc;
     var onNewEventClick = callbacks.onNewEventClick;
-    var ref1 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useState)(null), 2), offsetTop = ref1[0], setOffsetTop = ref1[1];
-    var ref2 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useState)(null), 2), offsetTopEnd = ref2[0], setOffsetTopEnd = ref2[1];
-    var startAt = (0, $djxuo$react.useRef)(null);
-    var endAt = (0, $djxuo$react.useRef)(null);
-    var ref3 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useState)(null), 2), startAtState = ref3[0], setStartAt = ref3[1];
-    var ref4 = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useState)(null), 2), endAtState = ref4[0], setEndAt = ref4[1];
+    var ref1 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useState)(null), 2), offsetTop = ref1[0], setOffsetTop = ref1[1];
+    var ref2 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useState)(null), 2), offsetTopEnd = ref2[0], setOffsetTopEnd = ref2[1];
+    var startAt = (0, $cw6c3$react.useRef)(null);
+    var endAt = (0, $cw6c3$react.useRef)(null);
+    var ref3 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useState)(null), 2), startAtState = ref3[0], setStartAt = ref3[1];
+    var ref4 = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useState)(null), 2), endAtState = ref4[0], setEndAt = ref4[1];
     // const [isDraggingNewEvent, setIsDraggingNewEvent] = useState(false);
-    var newEventStartOffset = (0, $djxuo$react.useRef)(null);
-    var newEventEndOffset = (0, $djxuo$react.useRef)(null);
-    var startAtRef = (0, $djxuo$react.useRef)(null);
-    var isDraggingRef = (0, $djxuo$react.useRef)(false);
-    var isUpdating = (0, $djxuo$react.useRef)(false);
+    var newEventStartOffset = (0, $cw6c3$react.useRef)(null);
+    var newEventEndOffset = (0, $cw6c3$react.useRef)(null);
+    var startAtRef = (0, $cw6c3$react.useRef)(null);
+    var isDraggingRef = (0, $cw6c3$react.useRef)(false);
+    var isUpdating = (0, $cw6c3$react.useRef)(false);
     var style = {
         position: "absolute",
         top: offsetTop,
@@ -831,7 +846,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         // setIsDraggingNewEvent(true);
         e.preventDefault();
         e.stopPropagation();
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e)) return;
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e)) return;
         // Get column element for day, where event is placed
         var drawPanelElement = document.getElementById("Kalend__draw-panel");
         if (!drawPanelElement) return;
@@ -845,7 +860,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         // initial dragging
         if (newEventStartOffset.current === null) {
             setOffsetTop(y);
-            var startAtValue = (0, $205a253d75d8dc87$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store.startStep);
+            var startAtValue = (0, $f35790b60c4d4b59$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store);
             startAtRef.current = startAtValue;
             startAt.current = startAtValue;
             setStartAt(startAtValue);
@@ -861,7 +876,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         // handle dragging up
         if (newEventStartOffset.current && y < newEventStartOffset.current) {
             setOffsetTop(y);
-            var startAtValue1 = (0, $205a253d75d8dc87$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store.startStep);
+            var startAtValue1 = (0, $f35790b60c4d4b59$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store);
             startAtRef.current = startAtValue1;
             startAt.current = startAtValue1;
             setStartAt(startAtValue1);
@@ -869,7 +884,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         }
         // handle dragging down
         setOffsetTopEnd(y);
-        var endAtValue = (0, $205a253d75d8dc87$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store.startStep);
+        var endAtValue = (0, $f35790b60c4d4b59$export$4f0cc7427b5c4255)(y / store.scaleCoeff, store);
         endAt.current = endAtValue;
         setEndAt(endAtValue);
     };
@@ -890,7 +905,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         return;
         if (isUpdating.current) return;
         if (onNewEventClick && isDraggingRef.current) {
-            var ref, ref7, ref8, ref9;
+            var ref, ref7, ref8, ref9, ref10, ref11;
             isUpdating.current = true;
             if (!((ref7 = startAt === null || startAt === void 0 ? void 0 : (ref = startAt.current) === null || ref === void 0 ? void 0 : ref.toUTC()) === null || ref7 === void 0 ? void 0 : ref7.toString())) {
                 isDraggingRef.current = false;
@@ -899,11 +914,16 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
             }
             isDraggingRef.current = false;
             newEventStartOffset.current = null;
-            onNewEventClick({
-                event: event,
+            var chages = store.isAsc ? {
                 startAt: (ref8 = startAt.current) === null || ref8 === void 0 ? void 0 : ref8.startOf("month").toISO(),
                 endAt: (ref9 = endAt.current) === null || ref9 === void 0 ? void 0 : ref9.startOf("month").toISO()
-            }, event);
+            } : {
+                endAt: (ref10 = startAt.current) === null || ref10 === void 0 ? void 0 : ref10.startOf("month").toISO(),
+                startAt: (ref11 = endAt.current) === null || ref11 === void 0 ? void 0 : ref11.startOf("month").toISO()
+            };
+            onNewEventClick((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({
+                event: event
+            }, chages), event);
         }
         isDraggingRef.current = false;
         isUpdating.current = false;
@@ -913,7 +933,7 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
    * Set listeners
    * @param e
    */ var onMouseDownLong = function(e) {
-        if ((0, $6cb9f4b43772a84e$export$6da1c85d7de31b61)(e)) return;
+        if ((0, $79dca703cc699b4f$export$6da1c85d7de31b61)(e)) return;
         e.preventDefault();
         e.stopPropagation();
         if (e.button !== 0) return;
@@ -932,10 +952,10 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         // }
         onMouseDownLong(e);
     };
-    var verticalMonths = (0, $00e4595f061b0916$export$190d6a2573aa8371)(store.startStep, store.finishStep, store.scaleCoeff);
+    var verticalMonths = (0, $bf7b38bce41ca3dd$export$190d6a2573aa8371)(store.startStep, store.finishStep, store.scaleCoeff);
     var panelStyle = {
         width: width,
-        height: verticalMonths[verticalMonths.length - 1].offset,
+        height: verticalMonths.length ? verticalMonths[verticalMonths.length - 1].offset + verticalMonths[verticalMonths.length - 1].monthHeight : 0,
         overflow: "hidden"
     };
     var dataForDrawPanel = data;
@@ -957,15 +977,15 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         setEndAt(null);
         isUpdating.current = false;
     };
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
         id: "Kalend__draw-panel",
         style: panelStyle,
         onMouseDown: onMouseDown,
         onMouseUp: onMouseUp,
         className: "Kalend__draw-panel",
         children: [
-            dataForDrawPanel && dataForDrawPanel.length > 0 ? $7e06a8f7938e5477$var$renderEvents(dataForDrawPanel) : null,
-            isDraggingRef.current ? /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+            dataForDrawPanel && dataForDrawPanel.length > 0 ? $a4892b14d3d768fe$var$renderEvents(dataForDrawPanel) : null,
+            isDraggingRef.current ? /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                 style: {
                     width: "100%",
                     height: "100%",
@@ -977,22 +997,22 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
                 },
                 onClick: handleCloseNewEventDrag
             }) : null,
-            isDraggingRef.current ? /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+            isDraggingRef.current ? /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                 style: style,
-                children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+                children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
                     style: {
                         paddingTop: 4,
                         paddingLeft: 4,
                         fontSize: 12
                     },
                     children: [
-                        /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("p", {
+                        /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("p", {
                             style: {
                                 color: "white"
                             },
                             children: "Project"
                         }),
-                        /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("p", {
+                        /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("p", {
                             style: {
                                 color: "white"
                             },
@@ -1009,91 +1029,110 @@ var $7e06a8f7938e5477$var$EventsPanel = function(props) {
         ]
     });
 };
-var $7e06a8f7938e5477$export$2e2bcd8739ae039 = $7e06a8f7938e5477$var$EventsPanel;
+var $a4892b14d3d768fe$export$2e2bcd8739ae039 = $a4892b14d3d768fe$var$EventsPanel;
 
 
 
-var $60b84bdb01358f7c$var$TimeTable = function(props) {
+var $d9d05341da0a468a$var$TimeTable = function(props) {
     var style = {
-        paddingLeft: (0, $022f5b4afae53e21$export$447c5938f45c45a5),
+        paddingLeft: (0, $88a08af890f49243$export$447c5938f45c45a5),
         height: "100%"
     };
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
         style: style,
         className: "Kalend__Calendar__table Kalend__CalendarBody",
         id: "Kalend__timetable",
         children: [
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $35d188a81a4302e1$export$2e2bcd8739ae039), {}),
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $7e06a8f7938e5477$export$2e2bcd8739ae039), {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $49057570f1744f71$export$2e2bcd8739ae039), {}),
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $a4892b14d3d768fe$export$2e2bcd8739ae039), {
                 data: props.events
             })
         ]
     });
 };
-var $60b84bdb01358f7c$export$2e2bcd8739ae039 = $60b84bdb01358f7c$var$TimeTable;
+var $d9d05341da0a468a$export$2e2bcd8739ae039 = $d9d05341da0a468a$var$TimeTable;
 
 
 
-var $e0986ed3148ba0bb$var$Calendar = function(props) {
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+var $2c06f9532bb9aaf9$var$Calendar = function(props) {
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
+    var changeMonth = (0, $cw6c3$react.useCallback)(function(type, payload) {
+        dispatch({
+            type: store.isAsc ? type : type === "finishStep" ? "startStep" : "finishStep",
+            payload: store.isAsc ? payload : -1 * payload
+        });
+    }, [
+        store.isAsc
+    ]);
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
         style: {
             height: "100%",
             position: "relative"
         },
         children: [
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
                 style: {
                     display: "flex",
                     paddingBottom: 5,
                     paddingLeft: 30
                 },
                 children: [
-                    /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+                    /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
+                        style: {
+                            display: "flex"
+                        },
+                        children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
+                            onClick: function() {
+                                return dispatch({
+                                    type: "isAsc"
+                                });
+                            },
+                            children: store.isAsc ? /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("span", {
+                                children: "\u2193"
+                            }) : /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("span", {
+                                children: "\u2191"
+                            })
+                        })
+                    }),
+                    /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
                         style: {
                             display: "flex"
                         },
                         children: [
-                            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                                 onClick: function() {
-                                    return dispatch({
-                                        type: "startStep",
-                                        payload: -6
-                                    });
+                                    return changeMonth("startStep", -6);
                                 },
                                 children: "+"
                             }),
-                            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                                 onClick: function() {
-                                    return dispatch({
-                                        type: "startStep",
-                                        payload: 6
-                                    });
+                                    return changeMonth("startStep", 6);
                                 },
                                 children: "-"
                             })
                         ]
                     }),
-                    /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+                    /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
                         style: {
                             display: "flex",
                             paddingLeft: "30px"
                         },
                         children: [
-                            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                                 onClick: function() {
                                     return dispatch({
                                         type: "scaleCoeff",
-                                        payload: -6
+                                        payload: -1
                                     });
                                 },
                                 children: "+"
                             }),
-                            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                                 onClick: function() {
                                     return dispatch({
                                         type: "scaleCoeff",
-                                        payload: 6
+                                        payload: 1
                                     });
                                 },
                                 children: "-"
@@ -1103,37 +1142,31 @@ var $e0986ed3148ba0bb$var$Calendar = function(props) {
                     })
                 ]
             }),
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
                 style: {
                     position: "relative",
                     height: store.height
                 },
-                children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $60b84bdb01358f7c$export$2e2bcd8739ae039), {
-                    events: props.items ? (0, $205a253d75d8dc87$export$5ea939eddc3fd41c)(props.items, store.startStep, store.scaleCoeff) : []
+                children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $d9d05341da0a468a$export$2e2bcd8739ae039), {
+                    events: props.items ? (0, $f35790b60c4d4b59$export$5ea939eddc3fd41c)(props.items, store.startStep, store.scaleCoeff, store.isAsc, store.height) : []
                 })
             }),
-            /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsxs)("div", {
+            /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
                 style: {
                     display: "flex",
                     paddingTop: 5,
                     paddingLeft: 30
                 },
                 children: [
-                    /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                    /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                         onClick: function() {
-                            return dispatch({
-                                type: "finishStep",
-                                payload: 1
-                            });
+                            return changeMonth("finishStep", 6);
                         },
                         children: "+"
                     }),
-                    /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("button", {
+                    /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                         onClick: function() {
-                            return dispatch({
-                                type: "finishStep",
-                                payload: -1
-                            });
+                            return changeMonth("finishStep", -6);
                         },
                         children: "-"
                     })
@@ -1142,7 +1175,7 @@ var $e0986ed3148ba0bb$var$Calendar = function(props) {
         ]
     });
 };
-var $e0986ed3148ba0bb$export$2e2bcd8739ae039 = $e0986ed3148ba0bb$var$Calendar;
+var $2c06f9532bb9aaf9$export$2e2bcd8739ae039 = $2c06f9532bb9aaf9$var$Calendar;
 
 
 
@@ -1151,51 +1184,51 @@ var $e0986ed3148ba0bb$export$2e2bcd8739ae039 = $e0986ed3148ba0bb$var$Calendar;
 
 
 
-var $22ffefaecfcb6dee$var$DimensionsLayoutLayer = function(props) {
-    var ref = (0, ($parcel$interopDefault($djxuo$swchelperslib_sliced_to_arrayjs)))((0, $djxuo$react.useContext)((0, $29b6648a04437a19$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
+var $f101c73fee185a96$var$DimensionsLayoutLayer = function(props) {
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
     var setContext = function(type, payload) {
         dispatch({
             type: type,
             payload: payload
         });
     };
-    (0, $djxuo$react.useEffect)(function() {
+    (0, $cw6c3$react.useEffect)(function() {
         var el = document === null || document === void 0 ? void 0 : document.querySelector(".Kalend__Calendar__root");
         if (!el) return;
         var resizeObserver = new ResizeObserver(function(entries) {
             var entryRect = entries[0].contentRect;
-            setContext("width", entryRect.width - (0, $022f5b4afae53e21$export$447c5938f45c45a5));
+            setContext("width", entryRect.width - (0, $88a08af890f49243$export$447c5938f45c45a5));
         });
         resizeObserver.observe(el);
     }, [
         document === null || document === void 0 ? void 0 : document.querySelector(".Kalend__Calendar__root")
     ]);
-    (0, $djxuo$react.useEffect)(function() {
+    (0, $cw6c3$react.useEffect)(function() {
         var el = document === null || document === void 0 ? void 0 : document.querySelector(".Kalend__Calendar__root");
         if (!el) return;
         var resizeObserver = new ResizeObserver(function(entries) {
             var entryRect = entries[0].contentRect;
             var width = entryRect.width;
-            setContext("width", entryRect.width - (0, $022f5b4afae53e21$export$447c5938f45c45a5));
+            setContext("width", entryRect.width - (0, $88a08af890f49243$export$447c5938f45c45a5));
         });
         resizeObserver.observe(el);
     }, []);
     return props.children;
 };
-var $22ffefaecfcb6dee$export$2e2bcd8739ae039 = $22ffefaecfcb6dee$var$DimensionsLayoutLayer;
+var $f101c73fee185a96$export$2e2bcd8739ae039 = $f101c73fee185a96$var$DimensionsLayoutLayer;
 
 
 
 
 // use any as JSX was causing errors for some cases
-var $07b3aec454e0d712$var$Kalend = function(props) {
+var $3f7b2fe5d2c34f8f$var$Timeline = function(props) {
     // basic validation
-    return /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)("div", {
+    return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {
         className: "Kalend__Calendar__root Kalend__main",
-        children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $29b6648a04437a19$export$2e2bcd8739ae039), (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, props), {
-            children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $f246cba80f0a1dbc$export$2e2bcd8739ae039), (0, ($parcel$interopDefault($djxuo$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($djxuo$swchelperslib_object_spreadjs)))({}, props), {
-                children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $22ffefaecfcb6dee$export$2e2bcd8739ae039), {
-                    children: /*#__PURE__*/ (0, $djxuo$reactjsxruntime.jsx)((0, $e0986ed3148ba0bb$export$2e2bcd8739ae039), {
+        children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $65553fbba1d6d65b$export$2e2bcd8739ae039), (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, props), {
+            children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $3886b97a1526edd3$export$2e2bcd8739ae039), (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, props), {
+                children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $f101c73fee185a96$export$2e2bcd8739ae039), {
+                    children: /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)((0, $2c06f9532bb9aaf9$export$2e2bcd8739ae039), {
                         items: props.items
                     })
                 })
@@ -1203,7 +1236,7 @@ var $07b3aec454e0d712$var$Kalend = function(props) {
         }))
     });
 };
-var $07b3aec454e0d712$export$2e2bcd8739ae039 = $07b3aec454e0d712$var$Kalend;
+var $3f7b2fe5d2c34f8f$export$2e2bcd8739ae039 = $3f7b2fe5d2c34f8f$var$Timeline;
 
 
 //# sourceMappingURL=main.js.map

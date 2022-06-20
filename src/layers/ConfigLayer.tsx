@@ -1,12 +1,12 @@
 import { Callbacks } from '../common/interface';
 import { Context } from '../context/store';
-import { KalendProps } from '../index';
+import { TimelineProps } from '../index';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const emptyFunction = () => {};
-export const createCallbacks = (props: KalendProps): Callbacks => {
+export const createCallbacks = (props: TimelineProps): Callbacks => {
   return {
     onEventDragFinish: props.onEventDragFinish || undefined,
     onEventClick: props.onEventClick || emptyFunction,
@@ -15,7 +15,7 @@ export const createCallbacks = (props: KalendProps): Callbacks => {
   };
 };
 
-const ConfigLayer = (props: KalendProps & { children: JSX.Element }) => {
+const ConfigLayer = (props: TimelineProps & { children: JSX.Element }) => {
   const [store, dispatch] = useContext(Context);
   const setContext = (type: string, payload: any) => {
     dispatch({ type, payload });
@@ -24,7 +24,7 @@ const ConfigLayer = (props: KalendProps & { children: JSX.Element }) => {
   const initFromProps = () => {
     const callbacks = createCallbacks(props);
     setContext('callbacks', callbacks);
-    setContext('isAsc', props.startsFromTop);
+    setContext('isAsc', props.sortDirection === 'ASC' ? true : false);
   };
 
   useEffect(() => {

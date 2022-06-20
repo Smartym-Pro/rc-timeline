@@ -298,28 +298,4 @@
   }
 }
 
-.Kalend__CurrentHourLine {
-  width: 100%;
-  z-index: 250;
-  flex-direction: row;
-  display: flex;
-  position: absolute;
-}
-
-.Kalend__CurrentHourLine__circle {
-  height: 10px;
-  width: 10px;
-  border-radius: 50%;
-  position: absolute;
-  bottom: -5px;
-  left: -2.5px;
-}
-
-.Kalend__CurrentHourLine__line {
-  height: 2px;
-  width: 100%;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-}
-
 /*# sourceMappingURL=index.css.map */
