@@ -8,16 +8,18 @@ const renderHours = (width: number, startStep: number, finishStep: number, scale
   const verticalHours = createVerticalMonths(startStep, finishStep, scaleCoeff);
   const yearOffsets = verticalHours.reduce((res, item) => {
     const [key] = item.label.split(' ');
-    return { ...res, [key]: item.offset };
+    return { ...res, [key]: item.offset + item.monthHeight };
   }, {});
   const yearOffsetsEntries: any = Object.entries(yearOffsets);
   const yearHeights = yearOffsetsEntries.reduce((res, [year, offset], index) => {
     const style = {
-      [isAsc ? 'top' : 'bottom']: index === 0 ? (isAsc ? 0 : offset) : yearOffsetsEntries[index - 1][1],
+      [isAsc ? 'top' : 'bottom']: index === 0 ? 0 : yearOffsetsEntries[index - 1][1],
       height: index === 0 ? offset : offset - yearOffsetsEntries[index - 1][1],
       left: 0,
       display: 'flex',
       alignItems: 'center',
+      borderBottom: '1px solid gray',
+      borderTop: '1px solid gray',
     };
     return { ...res, [year]: { style } };
   }, {});
@@ -58,7 +60,7 @@ const renderHours = (width: number, startStep: number, finishStep: number, scale
 };
 
 const CalendarBodyMonths = () => {
-  const [store] = useContext(Context);
+  const [store, dispatch] = useContext(Context);
   const { width, startStep, finishStep, height, scaleCoeff, isAsc } = store;
   const hours: any = renderHours(width, startStep, finishStep, scaleCoeff, isAsc);
 

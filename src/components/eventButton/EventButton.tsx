@@ -125,10 +125,10 @@ const EventButton = (props: { item: EventState }) => {
       const changes = store.isAsc
         ? {
             startAt: item.startAt.startOf('month').toISO(),
-            endAt: nextEndAt.endOf('month').toISO() || item.endAt.endOf('month').toISO(),
+            endAt: nextEndAt ? nextEndAt.endOf('month').toISO() : item.endAt.endOf('month').toISO(),
           }
         : {
-            startAt: nextEndAt.startOf('month').toISO() || item.startAt().startOf('month').toISO(),
+            startAt: nextEndAt ? nextEndAt.startOf('month').toISO() : item.startAt().startOf('month').toISO(),
             endAt: item.endAt.startOf('month').toISO(),
           };
       const updatedEvent = {
@@ -183,7 +183,6 @@ const EventButton = (props: { item: EventState }) => {
       const offsetY = store.isAsc ? offsetTopRef.current : store.height - offsetTopRef.current;
       const elOffset = store.isAsc ? item.offsetTop : store.height - item.offsetTop;
       const dayDelta = (offsetY - elOffset) / store.scaleCoeff;
-      console.log(dayDelta, offsetY, item.offsetTop);
       const newStartAt = item.startAt.plus({ day: dayDelta }).startOf('month');
       const monthDelta = newStartAt.diff(item.startAt, ['month']).months;
       const newEndAt = item.endAt.plus({ month: monthDelta }).endOf('month');

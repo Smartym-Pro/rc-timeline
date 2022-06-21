@@ -207,13 +207,13 @@ var $49057570f1744f71$var$renderHours = function(width, startStep, finishStep, s
     var verticalHours = (0, $bf7b38bce41ca3dd$export$190d6a2573aa8371)(startStep, finishStep, scaleCoeff);
     var yearOffsets = verticalHours.reduce(function(res, item) {
         var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))(item.label.split(" "), 1), key = ref[0];
-        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, key, item.offset));
+        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, key, item.offset + item.monthHeight));
     }, {});
     var yearOffsetsEntries = Object.entries(yearOffsets);
     var yearHeights = yearOffsetsEntries.reduce(function(res, param, index) {
         var _param = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))(param, 2), year = _param[0], offset = _param[1];
         var _obj;
-        var style = (_obj = {}, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, isAsc ? "top" : "bottom", index === 0 ? isAsc ? 0 : offset : yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "height", index === 0 ? offset : offset - yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "left", 0), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "display", "flex"), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "alignItems", "center"), _obj);
+        var style = (_obj = {}, (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, isAsc ? "top" : "bottom", index === 0 ? 0 : yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "height", index === 0 ? offset : offset - yearOffsetsEntries[index - 1][1]), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "left", 0), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "display", "flex"), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "alignItems", "center"), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "borderBottom", "1px solid gray"), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))(_obj, "borderTop", "1px solid gray"), _obj);
         return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, res), (0, ($parcel$interopDefault($cw6c3$swchelperslib_define_propertyjs)))({}, year, {
             style: style
         }));
@@ -255,7 +255,7 @@ var $49057570f1744f71$var$renderHours = function(width, startStep, finishStep, s
     });
 };
 var $49057570f1744f71$var$CalendarBodyMonths = function() {
-    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 1), store = ref[0];
+    var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
     var width = store.width, startStep = store.startStep, finishStep = store.finishStep, height = store.height, scaleCoeff = store.scaleCoeff, isAsc = store.isAsc;
     var hours = $49057570f1744f71$var$renderHours(width, startStep, finishStep, scaleCoeff, isAsc);
     return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("div", {

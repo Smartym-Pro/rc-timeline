@@ -1,6 +1,6 @@
 // tslint:disable-next-line:cyclomatic-complexity
 import { Store } from './store';
-import { createVerticalMonths } from '../../src/utils/common';
+import { createVerticalMonths } from '../utils/common';
 import StateReducer from '../utils/stateReducer';
 
 export const getHeight = (start: number, finish: number, scaleCoeff: number) => {
@@ -18,6 +18,13 @@ const Reducer = (state: Store, action) => {
     case 'startStep':
       const nextStartStep = state.startStep + action.payload;
       return { ...state, startStep: nextStartStep, height: getHeight(nextStartStep, state.finishStep, state.scaleCoeff) };
+    case 'bothSteps':
+      return {
+        ...state,
+        startStep: action.payload.startStep,
+        finishStep: action.payload.finishStep,
+        height: getHeight(action.payload.startStep, action.payload.finishStep, state.scaleCoeff),
+      };
     case 'scaleCoeff':
       //const oldCoeff = state.scaleCoeff;
       const scaleCoeff = action.payload > 0 ? state.scaleCoeff / 2 : state.scaleCoeff * 2;

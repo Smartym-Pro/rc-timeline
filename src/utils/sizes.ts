@@ -119,7 +119,6 @@ export const getComponentsSizes = (components: CalendarEvent[], start: number, s
 export const getDateFromPosition = (value: number, store): DateTime => {
   const day = DateTime.local().plus({ month: store.startStep }).startOf('month');
   const delta = store.isAsc ? value : store.height / store.scaleCoeff - value;
-  console.log(day.toISO(), delta, day.plus({ day: delta }).toISO());
   return day.plus({ day: delta }).set({
     hour: 0,
     minute: 0,

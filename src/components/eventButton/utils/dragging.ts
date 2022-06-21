@@ -23,10 +23,6 @@ export const onMoveNormalEvent = (e, draggingRef, eventWasChangedRef, offsetTopR
     // calculate x and y coordinates while following mouse move
     y = e.clientY - drawPanelElementRect.top;
   }
-  // restrict draggable space for timetable
-  if (y < 0) {
-    return;
-  }
 
   eventWasChangedRef.current = true;
   setState('offsetTop', y);

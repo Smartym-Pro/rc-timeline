@@ -1,8 +1,9 @@
-import React, { useContext, useCallback } from 'react';
-import { Context } from '../src/context/store';
+import React, { useContext, useCallback, useEffect } from 'react';
+import { Context } from './context/store';
 import TimeTable from './components/TimeTable/TimeTable';
-import { getComponentsSizes } from '../src/utils/sizes';
-import { CalendarEvent } from '../src/common/interface';
+import { getComponentsSizes } from './utils/sizes';
+import { CalendarEvent } from './common/interface';
+import { DateTime } from 'luxon';
 
 const Calendar = (props: { items: CalendarEvent[] }) => {
   const [store, dispatch] = useContext(Context);
@@ -15,6 +16,27 @@ const Calendar = (props: { items: CalendarEvent[] }) => {
     },
     [store.isAsc],
   );
+
+  useEffect(() => {
+    const dates = props.items.reduce(
+      (res, cur) => {
+        if (cur.startAt && DateTime.fromISO(cur.startAt).ts < res.startAt) {
+          res.startAt = DateTime.fromISO(cur.startAt).ts;
+        }
+        if (cur.endAt && DateTime.fromISO(cur.endAt).ts > res.endAt) {
+          res.endAt = DateTime.fromISO(cur.endAt).ts;
+        }
+        return res;
+      },
+      { startAt: DateTime.local().ts, endAt: 0 },
+    );
+    const min = DateTime.fromSeconds(dates.startAt / 1000);
+    const max = DateTime.fromSeconds(dates.endAt / 1000);
+    const startStep = Math.ceil(min.diff(DateTime.local(), ['months']).months);
+    const finishStep = Math.ceil(max.diff(DateTime.local(), ['month']).months);
+    dispatch({ type: 'bothSteps', payload: { startStep, finishStep } });
+  }, [props.items]);
+
   return (
     <div style={{ height: '100%', position: 'relative' }}>
       <div style={{ display: 'flex', paddingBottom: 5, paddingLeft: 30 }}>
