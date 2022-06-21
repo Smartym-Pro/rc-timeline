@@ -3,8 +3,8 @@ var $cw6c3$swchelperslib_object_spread_propsjs = require("@swc/helpers/lib/_obje
 var $cw6c3$reactjsxruntime = require("react/jsx-runtime");
 var $cw6c3$react = require("react");
 var $cw6c3$swchelperslib_sliced_to_arrayjs = require("@swc/helpers/lib/_sliced_to_array.js");
-var $cw6c3$swchelperslib_object_without_propertiesjs = require("@swc/helpers/lib/_object_without_properties.js");
 var $cw6c3$luxon = require("luxon");
+var $cw6c3$swchelperslib_object_without_propertiesjs = require("@swc/helpers/lib/_object_without_properties.js");
 var $cw6c3$swchelperslib_define_propertyjs = require("@swc/helpers/lib/_define_property.js");
 var $cw6c3$swchelperslib_to_consumable_arrayjs = require("@swc/helpers/lib/_to_consumable_array.js");
 
@@ -110,6 +110,12 @@ var $e7acfb653c6fbfca$var$Reducer = function(state, action) {
             return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
                 startStep: nextStartStep,
                 height: $e7acfb653c6fbfca$export$c08559766941f856(nextStartStep, state.finishStep, state.scaleCoeff)
+            });
+        case "bothSteps":
+            return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, state), {
+                startStep: action.payload.startStep,
+                finishStep: action.payload.finishStep,
+                height: $e7acfb653c6fbfca$export$c08559766941f856(action.payload.startStep, action.payload.finishStep, state.scaleCoeff)
             });
         case "scaleCoeff":
             //const oldCoeff = state.scaleCoeff;
@@ -319,8 +325,6 @@ var $eaa81b90f81362ff$export$8c6a352b48fd8d92 = function(e, draggingRef, eventWa
     else // handle mouse movement
     // calculate x and y coordinates while following mouse move
     y = e.clientY - drawPanelElementRect.top;
-    // restrict draggable space for timetable
-    if (y < 0) return;
     eventWasChangedRef.current = true;
     setState("offsetTop", y);
     offsetTopRef.current = y;
@@ -555,9 +559,6 @@ var $f35790b60c4d4b59$export$4f0cc7427b5c4255 = function(value, store) {
         month: store.startStep
     }).startOf("month");
     var delta = store.isAsc ? value : store.height / store.scaleCoeff - value;
-    console.log(day.toISO(), delta, day.plus({
-        day: delta
-    }).toISO());
     return day.plus({
         day: delta
     }).set({
@@ -660,9 +661,9 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
             var nextEndAt = endAtRef.current ? (0, $f35790b60c4d4b59$export$4f0cc7427b5c4255)(endAtRef.current / store.scaleCoeff, store) : null;
             var changes = store.isAsc ? {
                 startAt: item.startAt.startOf("month").toISO(),
-                endAt: nextEndAt.endOf("month").toISO() || item.endAt.endOf("month").toISO()
+                endAt: nextEndAt ? nextEndAt.endOf("month").toISO() : item.endAt.endOf("month").toISO()
             } : {
-                startAt: nextEndAt.startOf("month").toISO() || item.startAt().startOf("month").toISO(),
+                startAt: nextEndAt ? nextEndAt.startOf("month").toISO() : item.startAt().startOf("month").toISO(),
                 endAt: item.endAt.startOf("month").toISO()
             };
             var updatedEvent = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item, changes);
@@ -702,7 +703,6 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
             var offsetY = store.isAsc ? offsetTopRef.current : store.height - offsetTopRef.current;
             var elOffset = store.isAsc ? item.offsetTop : store.height - item.offsetTop;
             var dayDelta = (offsetY - elOffset) / store.scaleCoeff;
-            console.log(dayDelta, offsetY, item.offsetTop);
             var newStartAt = item.startAt.plus({
                 day: dayDelta
             }).startOf("month");
@@ -1054,6 +1054,7 @@ var $d9d05341da0a468a$export$2e2bcd8739ae039 = $d9d05341da0a468a$var$TimeTable;
 
 
 
+
 var $2c06f9532bb9aaf9$var$Calendar = function(props) {
     var ref = (0, ($parcel$interopDefault($cw6c3$swchelperslib_sliced_to_arrayjs)))((0, $cw6c3$react.useContext)((0, $65553fbba1d6d65b$export$841858b892ce1f4c)), 2), store = ref[0], dispatch = ref[1];
     var changeMonth = (0, $cw6c3$react.useCallback)(function(type, payload) {
@@ -1063,6 +1064,33 @@ var $2c06f9532bb9aaf9$var$Calendar = function(props) {
         });
     }, [
         store.isAsc
+    ]);
+    (0, $cw6c3$react.useEffect)(function() {
+        var dates = props.items.reduce(function(res, cur) {
+            if (cur.startAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).ts < res.startAt) res.startAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).ts;
+            if (cur.endAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).ts > res.endAt) res.endAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).ts;
+            return res;
+        }, {
+            startAt: (0, $cw6c3$luxon.DateTime).local().ts,
+            endAt: 0
+        });
+        var min = (0, $cw6c3$luxon.DateTime).fromSeconds(dates.startAt / 1000);
+        var max = (0, $cw6c3$luxon.DateTime).fromSeconds(dates.endAt / 1000);
+        var startStep = Math.ceil(min.diff((0, $cw6c3$luxon.DateTime).local(), [
+            "months"
+        ]).months);
+        var finishStep = Math.ceil(max.diff((0, $cw6c3$luxon.DateTime).local(), [
+            "month"
+        ]).months);
+        dispatch({
+            type: "bothSteps",
+            payload: {
+                startStep: startStep,
+                finishStep: finishStep
+            }
+        });
+    }, [
+        props.items
     ]);
     return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)("div", {
         style: {
