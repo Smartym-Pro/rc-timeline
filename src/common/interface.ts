@@ -29,10 +29,8 @@ export interface EventStyle {
   width: string | number;
   top: number;
   left: number;
-  backgroundColor: string;
   transition?: string;
   zIndex?: number;
-  border: string;
   alignItems?: string;
   visibility: any;
   color: string;
@@ -49,6 +47,7 @@ export interface EventState {
   id: string;
   type?: 'education' | 'project' | 'company';
   zIndex?: number;
+  meta?: string;
 }
 
 export interface KalendState {
@@ -60,7 +59,7 @@ export interface KalendState {
 
 export type OnEventClickFunc = (data: CalendarEvent, e: React.MouseEvent<HTMLElement>) => void;
 export type OnEventDragFinishFunc = (updatedEvent: CalendarEvent) => void;
-export type OnDeleteEventFunc = (id: string) => void;
+export type OnDeleteEventFunc = (id: string, meta: string) => void;
 export type OnNewEventClickFunc = (data: NewEventClickData, e: React.MouseEvent<HTMLElement>) => void;
 
 export interface Callbacks {

@@ -45,9 +45,7 @@ const EventButton = (props: { item: EventState }) => {
     top: state.offsetTop !== null ? state.offsetTop : item.offsetTop,
     left: state.offsetLeft !== null ? state.offsetLeft : item.offsetLeft,
     zIndex: state.zIndex || item.zIndex,
-    border: 'solid 1px #1d1f26',
     // border: state.zIndex > 2 ? `solid 1px white` : `solid 1px ${eventColor}`,
-    backgroundColor: 'indigo',
     visibility: 'visible',
     color: 'white',
     // alignItems: meta?.centerText ? 'center' : 'inherit',
@@ -257,7 +255,7 @@ const EventButton = (props: { item: EventState }) => {
     <ButtonBase
       id={item.id}
       style={style}
-      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''}`}
+      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${item.meta}_background-color`}
       onClick={handleEventClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
@@ -266,7 +264,7 @@ const EventButton = (props: { item: EventState }) => {
         onClick={(e) => {
           e.stopPropagation();
           if (onDeleteClick) {
-            onDeleteClick(item.id);
+            onDeleteClick(item.id, item.meta as string);
           }
         }}
       >

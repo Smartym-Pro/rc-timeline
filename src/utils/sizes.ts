@@ -16,6 +16,7 @@ const findNonIntersectedOnPreviousLine = (sizes, offsetTop, previous) => {
 
 const getLeftAndHeight = (sizesWithTop) => {
   let sizes = [...sizesWithTop].sort((a, b) => a.offsetTop - b.offsetTop);
+
   sizes.forEach((size, i) => {
     const intersectedWithYou = findIntersectedTop(sizes, size.offsetTop, i);
     if (!i || !intersectedWithYou.length) {
@@ -88,7 +89,7 @@ const getLeftAndHeight = (sizesWithTop) => {
 };
 
 export const getComponentsSizes = (components: CalendarEvent[], start: number, scaleCoeff = 1, isAsc: boolean, height: number) => {
-  const sizesWithTop = components.map(({ startAt: startDate, endAt: endDate, summary, id }) => {
+  const sizesWithTop = components.map(({ startAt: startDate, endAt: endDate, summary, id, meta }) => {
     const dayZeros = {
       hour: 0,
       minute: 0,
@@ -108,6 +109,7 @@ export const getComponentsSizes = (components: CalendarEvent[], start: number, s
       offsetLeft: '0',
       width: '100%',
       endAt,
+      meta,
       startAt,
       summary: `${startAt.year}: ${startAt.monthShort} - ${endAt.year}: ${endAt.monthShort}  ${summary}`,
       id,
