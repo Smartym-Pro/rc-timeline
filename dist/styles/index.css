@@ -44,7 +44,6 @@
   border-color: inherit;
   border-image: inherit;
   box-sizing: border-box;
-  background-color: rgba(0, 0, 0, 0);
   margin: 0;
   display: flex;
 }
@@ -76,9 +75,8 @@
 .Kalend__ButtonBase {
   min-height: 20px;
   cursor: pointer;
-  color: #424242;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
+  color: #fff;
+  border: 1px solid #1d1f26;
   border-radius: 10px;
   outline-style: none;
   font-size: 1.6em;
@@ -88,7 +86,7 @@
 }
 
 .Kalend__ButtonBase:hover {
-  background-color: #eee;
+  border: 1px solid #00f;
 }
 
 .Kalend__ButtonBase__animation {
@@ -285,7 +283,7 @@
   white-space: inherit;
   -webkit-box-orient: vertical;
   margin: 0;
-  padding: 5px 1px 6px 4px;
+  padding: 5px 50px 6px 4px;
   font-size: .8em;
   font-weight: 600;
   display: -webkit-box;

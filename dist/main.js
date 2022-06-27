@@ -429,22 +429,125 @@ var $f35790b60c4d4b59$var$findIntersectedTop = function(sizes, offsetTop, i) {
         return a.offsetTop - b.offsetTop;
     });
 };
-var $f35790b60c4d4b59$var$findNonIntersectedOnPreviousLine = function(sizes, offsetTop, previous) {
-    var onPrevousLine = sizes.filter(function(size) {
-        return size.offsetTop + size.height <= offsetTop;
+function $f35790b60c4d4b59$var$findIntersectedTopAndBottom(sizes, offsetTop, height, id) {
+    return sizes.filter(function(size) {
+        return size.id !== id && (size.offsetTop <= offsetTop && size.offsetTop + size.height > offsetTop || size.offsetTop >= offsetTop && offsetTop + height >= size.offsetTop);
     }).sort(function(a, b) {
-        return parseInt(a.offsetLeft) - parseInt(b.offsetLeft);
+        return a.offsetTop - b.offsetTop;
     });
-    return previous.offsetTop + previous.height < offsetTop ? (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(onPrevousLine).concat([
-        previous
-    ]) : onPrevousLine;
+}
+var $f35790b60c4d4b59$var$getFullIntersected = function(sizes, intersectedWithYou, i) {
+    var fullIntersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+    var intersectedQueue = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+    while(intersectedQueue && intersectedQueue.length){
+        var currentInQueue = intersectedQueue.shift();
+        var nextIntersected = $f35790b60c4d4b59$var$findIntersectedTop(sizes, currentInQueue.offsetTop, i);
+        var alreadyInResultIds = fullIntersected.map(function(param) {
+            var id = param.id;
+            return id;
+        });
+        var intersectedToAdd = nextIntersected.filter(function(param) {
+            var id = param.id;
+            return !alreadyInResultIds.includes(id);
+        });
+        intersectedQueue = intersectedQueue.concat(intersectedToAdd);
+        fullIntersected = fullIntersected.concat(intersectedToAdd);
+    }
+    return fullIntersected;
+};
+var $f35790b60c4d4b59$var$getFullIntersectedTopAndBottom = function(sizes, intersectedWithYou) {
+    var fullIntersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+    var intersectedQueue = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
+    while(intersectedQueue && intersectedQueue.length){
+        var currentInQueue = intersectedQueue.shift();
+        var nextIntersected = $f35790b60c4d4b59$var$findIntersectedTopAndBottom(sizes, currentInQueue === null || currentInQueue === void 0 ? void 0 : currentInQueue.offsetTop, currentInQueue === null || currentInQueue === void 0 ? void 0 : currentInQueue.height, currentInQueue === null || currentInQueue === void 0 ? void 0 : currentInQueue.id);
+        var alreadyInResultIds = fullIntersected.map(function(param) {
+            var id = param.id;
+            return id;
+        });
+        var intersectedToAdd = nextIntersected.filter(function(param) {
+            var id = param.id;
+            return !alreadyInResultIds.includes(id);
+        });
+        intersectedQueue = intersectedQueue.concat(intersectedToAdd);
+        fullIntersected = fullIntersected.concat(intersectedToAdd);
+    }
+    return fullIntersected;
+};
+var $f35790b60c4d4b59$var$newSizesAfterPression = function(item) {
+    var moveRight = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 0;
+    var oldWidth = item.width;
+    var newWidth = Math.floor(100 / (Math.floor(100 / parseInt(oldWidth)) + 1));
+    var oldPos = parseInt(item.offsetLeft) / parseInt(oldWidth);
+    var newLeft = (oldPos + moveRight) * newWidth;
+    return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
+        offsetLeft: "".concat(newLeft, "%"),
+        width: "".concat(newWidth, "%")
+    });
+};
+var $f35790b60c4d4b59$var$getEducationSizes = function(sizes, sizesWithTop) {
+    var educations = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizesWithTop).filter(function(size) {
+        return size.meta === "educationState";
+    }).sort(function(a, b) {
+        return a.offsetTop - b.offsetTop;
+    });
+    educations.forEach(function(size1, i) {
+        var intersectedWithYou = $f35790b60c4d4b59$var$findIntersectedTopAndBottom((0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizes).concat((0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(educations)), size1.offsetTop, size1.height, size1.id);
+        if (!intersectedWithYou.length) return;
+        var minLeftOfIntersected = intersectedWithYou.reduce(function(res, cur) {
+            if (parseInt(cur.offsetLeft) < parseInt(res.offsetLeft)) res = cur;
+            return res;
+        }, {
+            offsetLeft: "100"
+        });
+        if (parseInt(minLeftOfIntersected.offsetLeft) !== 0) {
+            var style = {
+                offsetLeft: "0%",
+                width: minLeftOfIntersected.width
+            };
+            educations[i] = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, educations[i], style);
+        } else {
+            var fullIntersected = $f35790b60c4d4b59$var$getFullIntersectedTopAndBottom((0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizes).concat((0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(educations)), intersectedWithYou).filter(function(param) {
+                var id = param.id;
+                return id !== size1.id;
+            });
+            var newSizes = fullIntersected.map(function(item) {
+                return $f35790b60c4d4b59$var$newSizesAfterPression(item, 1);
+            });
+            var stylesForMe = newSizes.reduce(function(res, curr) {
+                if (parseInt(curr.width) <= ((res === null || res === void 0 ? void 0 : res.width) ? parseInt(res.width) : 100)) res = {
+                    offsetLeft: "0%",
+                    width: curr.width
+                };
+                return res;
+            }, {});
+            newSizes = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(newSizes).concat([
+                (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size1, stylesForMe)
+            ]);
+            sizes = sizes.map(function(size) {
+                var replacedSize = newSizes.find(function(item) {
+                    return item.id === size.id;
+                });
+                return replacedSize || size;
+            });
+            educations = educations.map(function(size) {
+                var replacedSize = newSizes.find(function(item) {
+                    return item.id === size.id;
+                });
+                return replacedSize || size;
+            });
+        }
+    });
+    return (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizes).concat((0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(educations));
 };
 var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
     var sizes = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizesWithTop).sort(function(a, b) {
         return a.offsetTop - b.offsetTop;
+    }).filter(function(size) {
+        return size.meta !== "educationState";
     });
-    sizes.forEach(function(size1, i1) {
-        var intersectedWithYou = $f35790b60c4d4b59$var$findIntersectedTop(sizes, size1.offsetTop, i1);
+    sizes.forEach(function(size2, i1) {
+        var intersectedWithYou = $f35790b60c4d4b59$var$findIntersectedTop(sizes, size2.offsetTop, i1);
         if (!i1 || !intersectedWithYou.length) return;
         else {
             if (intersectedWithYou && intersectedWithYou[intersectedWithYou.length - 1].width === "100%") {
@@ -456,7 +559,7 @@ var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
                     });
                 });
                 sizesToReplace = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(sizesToReplace).concat([
-                    (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size1), {
+                    (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size2), {
                         offsetLeft: "".concat(intersectedWithYou.length * newLength, "%"),
                         width: "".concat(newLength, "%")
                     })
@@ -468,39 +571,29 @@ var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
                     return replacedSize || size;
                 });
             } else if (intersectedWithYou && intersectedWithYou[intersectedWithYou.length - 1].width !== "100%") {
-                var intersectedWithPrevious = $f35790b60c4d4b59$var$findIntersectedTop(sizes, sizes[i1 - 1].offsetTop, i1);
-                var nonIntersectedOnPreviousLine = $f35790b60c4d4b59$var$findNonIntersectedOnPreviousLine(intersectedWithPrevious, size1.offsetTop, sizes[i1 - 1]);
-                if (nonIntersectedOnPreviousLine === null || nonIntersectedOnPreviousLine === void 0 ? void 0 : nonIntersectedOnPreviousLine.length) sizes[i1] = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, sizes[i1]), {
-                    offsetLeft: nonIntersectedOnPreviousLine[0].offsetLeft,
-                    width: nonIntersectedOnPreviousLine[0].width
-                });
-                else {
-                    var fullIntersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
-                    var intersected = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(intersectedWithYou);
-                    while(intersected && intersected.length){
-                        var inter = intersected.map(function(param) {
-                            var offsetTop = param.offsetTop, id = param.id;
-                            return $f35790b60c4d4b59$var$findIntersectedTop(sizes, offsetTop, i1);
-                        }).flat();
-                        var exIds = fullIntersected.map(function(param) {
-                            var id = param.id;
-                            return id;
-                        });
-                        intersected = inter.filter(function(param) {
-                            var id = param.id;
-                            return !exIds.includes(id);
-                        });
-                        fullIntersected = fullIntersected.concat(intersected);
-                    }
-                    var newSizes = fullIntersected.map(function(item) {
-                        var oldWidth = item.width;
-                        var newWidth = Math.floor(100 / (Math.floor(100 / parseInt(oldWidth)) + 1));
-                        var oldPos = parseInt(item.offsetLeft) / parseInt(oldWidth);
-                        var newLeft = oldPos * newWidth;
-                        return (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
-                            offsetLeft: "".concat(newLeft, "%"),
-                            width: "".concat(newWidth, "%")
-                        });
+                var cellsNumber = Math.floor(100 / parseInt(intersectedWithYou[0].width));
+                if (cellsNumber > intersectedWithYou.length) {
+                    var allOffsets = Array.from({
+                        length: cellsNumber
+                    }, function(x, i) {
+                        return i;
+                    }).map(function(i) {
+                        return "".concat(i * parseInt(intersectedWithYou[0].width), "%");
+                    });
+                    var exisitingOffsets = intersectedWithYou.map(function(param) {
+                        var offsetLeft = param.offsetLeft;
+                        return offsetLeft;
+                    });
+                    var offsetLeft1 = allOffsets.find(function(item) {
+                        return !exisitingOffsets.includes(item);
+                    });
+                    sizes[i1] = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, sizes[i1]), {
+                        offsetLeft: offsetLeft1,
+                        width: intersectedWithYou[0].width
+                    });
+                } else {
+                    var newSizes = $f35790b60c4d4b59$var$getFullIntersected(sizes, intersectedWithYou, i1).map(function(item) {
+                        return $f35790b60c4d4b59$var$newSizesAfterPression(item);
                     });
                     var stylesForMe = newSizes.reduce(function(res, curr) {
                         if (parseInt(curr.offsetLeft) >= ((res === null || res === void 0 ? void 0 : res.offsetLeft) ? parseInt(res.offsetLeft) : 0)) res = {
@@ -510,7 +603,7 @@ var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
                         return res;
                     }, {});
                     newSizes = (0, ($parcel$interopDefault($cw6c3$swchelperslib_to_consumable_arrayjs)))(newSizes).concat([
-                        (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size1, stylesForMe)
+                        (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, size2, stylesForMe)
                     ]);
                     sizes = sizes.map(function(size) {
                         var replacedSize = newSizes.find(function(item) {
@@ -522,12 +615,12 @@ var $f35790b60c4d4b59$var$getLeftAndHeight = function(sizesWithTop) {
             }
         }
     });
-    return sizes;
+    return $f35790b60c4d4b59$var$getEducationSizes(sizes, sizesWithTop);
 };
 var $f35790b60c4d4b59$export$5ea939eddc3fd41c = function(components, start) {
     var scaleCoeff = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : 1, isAsc = arguments.length > 3 ? arguments[3] : void 0, height = arguments.length > 4 ? arguments[4] : void 0;
     var sizesWithTop = components.map(function(param) {
-        var startDate = param.startAt, endDate = param.endAt, summary = param.summary, id = param.id;
+        var startDate = param.startAt, endDate = param.endAt, summary = param.summary, id = param.id, meta = param.meta;
         var dayZeros = {
             hour: 0,
             minute: 0,
@@ -547,6 +640,7 @@ var $f35790b60c4d4b59$export$5ea939eddc3fd41c = function(components, start) {
             offsetLeft: "0",
             width: "100%",
             endAt: endAt,
+            meta: meta,
             startAt: startAt,
             summary: "".concat(startAt.year, ": ").concat(startAt.monthShort, " - ").concat(endAt.year, ": ").concat(endAt.monthShort, "  ").concat(summary),
             id: id
@@ -603,9 +697,7 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
         top: state.offsetTop !== null ? state.offsetTop : item.offsetTop,
         left: state.offsetLeft !== null ? state.offsetLeft : item.offsetLeft,
         zIndex: state.zIndex || item.zIndex,
-        border: "solid 1px #1d1f26",
         // border: state.zIndex > 2 ? `solid 1px white` : `solid 1px ${eventColor}`,
-        backgroundColor: "indigo",
         visibility: "visible",
         color: "white"
     };
@@ -713,8 +805,12 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
                 month: monthDelta
             }).endOf("month");
             newEvent = (0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spread_propsjs)))((0, ($parcel$interopDefault($cw6c3$swchelperslib_object_spreadjs)))({}, item), {
-                startAt: newStartAt.toISO(),
-                endAt: newEndAt.toISO()
+                startAt: store.isAsc ? newStartAt.toISO() : newStartAt.plus({
+                    month: 1
+                }).toISO(),
+                endAt: store.isAsc ? newEndAt.toISO() : newEndAt.plus({
+                    month: 1
+                }).toISO()
             });
             if (newEvent) onEventDragFinish(newEvent);
         }
@@ -757,7 +853,7 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
     return /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsxs)((0, $f7dc25aaa4235907$export$2e2bcd8739ae039), {
         id: item.id,
         style: style,
-        className: "Kalend__Event-normal ".concat(state.isDragging ? "Kalend__EventButton__elevation" : ""),
+        className: "Kalend__Event-normal ".concat(state.isDragging ? "Kalend__EventButton__elevation" : "", " ").concat(item.meta, "_background-color"),
         onClick: handleEventClick,
         onMouseDown: onMouseDown,
         onMouseUp: onMouseUp,
@@ -765,7 +861,7 @@ var $b852c5f3008abacb$var$EventButton = function(props) {
             /*#__PURE__*/ (0, $cw6c3$reactjsxruntime.jsx)("button", {
                 onClick: function(e) {
                     e.stopPropagation();
-                    if (onDeleteClick) onDeleteClick(item.id);
+                    if (onDeleteClick) onDeleteClick(item.id, item.meta);
                 },
                 children: "\xd7"
             }),
@@ -1067,8 +1163,8 @@ var $2c06f9532bb9aaf9$var$Calendar = function(props) {
     ]);
     (0, $cw6c3$react.useEffect)(function() {
         var dates = props.items.reduce(function(res, cur) {
-            if (cur.startAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).ts < res.startAt) res.startAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).ts;
-            if (cur.endAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).ts > res.endAt) res.endAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).ts;
+            if (cur.startAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).ts < res.startAt) res.startAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.startAt).startOf("month").ts;
+            if (cur.endAt && (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).ts > res.endAt) res.endAt = (0, $cw6c3$luxon.DateTime).fromISO(cur.endAt).endOf("month").ts;
             return res;
         }, {
             startAt: (0, $cw6c3$luxon.DateTime).local().ts,

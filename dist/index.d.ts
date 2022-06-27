@@ -12,7 +12,7 @@ interface NewEventClickData {
 }
 type OnEventClickFunc = (data: CalendarEvent, e: React.MouseEvent<HTMLElement>) => void;
 type OnEventDragFinishFunc = (updatedEvent: CalendarEvent) => void;
-type OnDeleteEventFunc = (id: string) => void;
+type OnDeleteEventFunc = (id: string, meta: string) => void;
 type OnNewEventClickFunc = (data: NewEventClickData, e: React.MouseEvent<HTMLElement>) => void;
 export type OnEventClickData = CalendarEvent;
 export type OnNewEventClickData = NewEventClickData;
