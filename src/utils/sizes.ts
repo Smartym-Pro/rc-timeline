@@ -23,7 +23,7 @@ const getFullIntersected = (sizes, intersectedWithYou, i) => {
   let intersectedQueue = [...intersectedWithYou];
   while (intersectedQueue && intersectedQueue.length) {
     const currentInQueue = intersectedQueue.shift();
-    const nextIntersected = findIntersectedTop(sizes, currentInQueue.offsetTop, i);
+    const nextIntersected = findIntersectedTopAndBottom(sizes, currentInQueue.offsetTop, currentInQueue.height, currentInQueue.id);
     const alreadyInResultIds = fullIntersected.map(({ id }) => id);
     const intersectedToAdd = nextIntersected.filter(({ id }) => !alreadyInResultIds.includes(id));
     intersectedQueue = intersectedQueue.concat(intersectedToAdd);
@@ -152,7 +152,9 @@ const getLeftAndHeight = (sizesWithTop: EventState[]) => {
             width: intersectedWithYou[0].width,
           };
         } else {
-          let newSizes = getFullIntersected(sizes, intersectedWithYou, i).map((item) => newSizesAfterPression(item));
+          let newSizes = getFullIntersected(sizes, intersectedWithYou, i)
+            .filter(({ id }) => id !== size.id)
+            .map((item) => newSizesAfterPression(item));
           const stylesForMe = newSizes.reduce((res, curr) => {
             if (parseInt(curr.offsetLeft) >= (res?.offsetLeft ? parseInt(res.offsetLeft) : 0)) {
               res = {
