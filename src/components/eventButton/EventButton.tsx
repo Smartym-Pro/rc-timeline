@@ -186,8 +186,8 @@ const EventButton = (props: { item: EventState }) => {
       const newEndAt = item.endAt.plus({ month: monthDelta }).endOf('month');
       newEvent = {
         ...item,
-        startAt: newStartAt.toISO(),
-        endAt: newEndAt.toISO(),
+        startAt: store.isAsc ? newStartAt.toISO() : newStartAt.plus({ month: 1 }).toISO(),
+        endAt: store.isAsc ? newEndAt.toISO() : newEndAt.plus({ month: 1 }).toISO(),
       };
 
       if (newEvent) {

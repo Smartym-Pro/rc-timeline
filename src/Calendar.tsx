@@ -21,10 +21,10 @@ const Calendar = (props: { items: CalendarEvent[] }) => {
     const dates = props.items.reduce(
       (res, cur) => {
         if (cur.startAt && DateTime.fromISO(cur.startAt).ts < res.startAt) {
-          res.startAt = DateTime.fromISO(cur.startAt).ts;
+          res.startAt = DateTime.fromISO(cur.startAt).startOf('month').ts;
         }
         if (cur.endAt && DateTime.fromISO(cur.endAt).ts > res.endAt) {
-          res.endAt = DateTime.fromISO(cur.endAt).ts;
+          res.endAt = DateTime.fromISO(cur.endAt).endOf('month').ts;
         }
         return res;
       },
