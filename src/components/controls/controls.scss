@@ -1,0 +1,36 @@
+.top-control__wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.top-control,
+.bottom-control {
+  display: flex;
+  padding-bottom: 5px;
+  padding-top: 30px;
+  button {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: indigo;
+    cursor: pointer;
+    &:hover {
+      background: indigo;
+      color: white;
+    }
+  }
+}
+
+.top-control__item {
+  display: 'flex';
+  &_left {
+    display: 'felx';
+    padding-left: 30px;
+    align-items: center;
+  }
+}
+
+.bottom-control {
+  padding-top: 5px;
+  padding-left: 30px;
+}

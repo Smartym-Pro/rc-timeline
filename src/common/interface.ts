@@ -47,7 +47,7 @@ export interface EventState {
   id: string;
   type?: 'education' | 'project' | 'company';
   zIndex?: number;
-  meta?: string;
+  meta?: any;
 }
 
 export interface KalendState {
@@ -60,7 +60,7 @@ export interface KalendState {
 export type OnEventClickFunc = (data: CalendarEvent, e: React.MouseEvent<HTMLElement>) => void;
 export type OnEventDragFinishFunc = (updatedEvent: CalendarEvent) => void;
 export type OnDeleteEventFunc = (id: string, meta: string) => void;
-export type OnNewEventClickFunc = (data: NewEventClickData, e: React.MouseEvent<HTMLElement>) => void;
+export type OnNewEventClickFunc = (data: NewEventClickData, type: string, e: React.MouseEvent<HTMLElement>) => void;
 
 export interface Callbacks {
   onEventDragFinish?: OnEventDragFinishFunc;

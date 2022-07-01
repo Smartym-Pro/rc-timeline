@@ -31,24 +31,6 @@ const getFullIntersected = (sizes, intersectedWithYou, i) => {
   }
   return fullIntersected;
 };
-const getFullIntersectedTopAndBottom = (sizes: EventState[], intersectedWithYou: EventState[]) => {
-  let fullIntersected = [...intersectedWithYou];
-  let intersectedQueue = [...intersectedWithYou];
-  while (intersectedQueue && intersectedQueue.length) {
-    const currentInQueue = intersectedQueue.shift();
-    const nextIntersected = findIntersectedTopAndBottom(
-      sizes,
-      currentInQueue?.offsetTop as number,
-      currentInQueue?.height as number,
-      currentInQueue?.id as string,
-    );
-    const alreadyInResultIds = fullIntersected.map(({ id }) => id);
-    const intersectedToAdd = nextIntersected.filter(({ id }) => !alreadyInResultIds.includes(id));
-    intersectedQueue = intersectedQueue.concat(intersectedToAdd);
-    fullIntersected = fullIntersected.concat(intersectedToAdd);
-  }
-  return fullIntersected;
-};
 
 const newSizesAfterPression = (item, moveRight = 0) => {
   const oldWidth = item.width;
@@ -62,63 +44,8 @@ const newSizesAfterPression = (item, moveRight = 0) => {
   };
 };
 
-const getEducationSizes = (sizes: EventState[], sizesWithTop: EventState[]) => {
-  let educations = [...sizesWithTop].filter((size) => size.meta === 'educationState').sort((a, b) => a.offsetTop - b.offsetTop);
-  educations.forEach((size, i) => {
-    const intersectedWithYou = findIntersectedTopAndBottom([...sizes, ...educations], size.offsetTop, size.height, size.id);
-    if (!intersectedWithYou.length) {
-      return;
-    }
-
-    const minLeftOfIntersected = intersectedWithYou.reduce(
-      (res, cur) => {
-        if (parseInt(cur.offsetLeft) < parseInt(res.offsetLeft)) {
-          res = cur;
-        }
-        return res;
-      },
-      { offsetLeft: '100' } as EventState,
-    );
-    if (parseInt(minLeftOfIntersected.offsetLeft) !== 0) {
-      const style = {
-        offsetLeft: '0%',
-        width: minLeftOfIntersected.width,
-      };
-      educations[i] = { ...educations[i], ...style };
-    } else {
-      const fullIntersected = getFullIntersectedTopAndBottom([...sizes, ...educations], intersectedWithYou).filter(
-        ({ id }) => id !== size.id,
-      );
-      let newSizes = fullIntersected.map((item) => newSizesAfterPression(item, 1));
-      const stylesForMe = newSizes.reduce((res, curr) => {
-        if (parseInt(curr.width) <= (res?.width ? parseInt(res.width) : 100)) {
-          res = {
-            offsetLeft: '0%',
-            width: curr.width,
-          };
-        }
-        return res;
-      }, {});
-      newSizes = [...newSizes, { ...size, ...stylesForMe }];
-      sizes = sizes.map((size) => {
-        const replacedSize = newSizes.find((item) => {
-          return item.id === size.id;
-        });
-        return replacedSize || size;
-      });
-      educations = educations.map((size) => {
-        const replacedSize = newSizes.find((item) => {
-          return item.id === size.id;
-        });
-        return replacedSize || size;
-      });
-    }
-  });
-  return [...sizes, ...educations];
-};
-
 const getLeftAndHeight = (sizesWithTop: EventState[]) => {
-  let sizes = [...sizesWithTop].sort((a, b) => a.offsetTop - b.offsetTop).filter((size) => size.meta !== 'educationState');
+  let sizes = [...sizesWithTop].sort((a, b) => a.offsetTop - b.offsetTop);
 
   sizes.forEach((size, i) => {
     const intersectedWithYou = findIntersectedTop(sizes, size.offsetTop, i);
@@ -176,7 +103,7 @@ const getLeftAndHeight = (sizesWithTop: EventState[]) => {
     }
   });
 
-  return getEducationSizes(sizes, sizesWithTop);
+  return [...sizes];
 };
 
 export const getComponentsSizes = (components: CalendarEvent[], start: number, scaleCoeff = 1, isAsc: boolean, height: number) => {

@@ -160,7 +160,7 @@ const EventsPanel = (props: EventsPanelProps) => {
 
       isDraggingRef.current = false;
       newEventStartOffset.current = null;
-      const chages = store.isAsc
+      const changes = store.isAsc
         ? {
             startAt: startAt.current?.startOf('month').toISO(),
             endAt: endAt.current?.startOf('month').toISO(),
@@ -173,7 +173,8 @@ const EventsPanel = (props: EventsPanelProps) => {
       onNewEventClick(
         {
           event,
-          ...chages,
+          ...changes,
+          meta: data[0]?.meta?.type ? data[0].meta : { type: 'workState' },
         },
         event,
       );
@@ -218,14 +219,14 @@ const EventsPanel = (props: EventsPanelProps) => {
 
   const verticalMonths = createVerticalMonths(store.startStep, store.finishStep, store.scaleCoeff);
   const panelStyle = {
-    width: width,
+    width: '100%',
     height: verticalMonths.length
       ? verticalMonths[verticalMonths.length - 1].offset + verticalMonths[verticalMonths.length - 1].monthHeight
       : 0,
     overflow: 'hidden',
   };
 
-  const dataForDrawPanel: any = data;
+  const dataForDrawPanel: EventState[] = data;
   /*const nowPosition: number =
     dateNow.diff(DateTime.local().set({ hour: 0, minute: 0, second: 0 }), 'minutes').toObject().minutes / (60 / hourHeight);*/
 

@@ -1,8 +1,14 @@
 {
-  "name": "hrm-timeline",
-  "version": "1.0.0",
-  "private": true,
+  "name": "@smartym-pro/hrm-timeline",
+  "version": "1.0.1",
   "source": "src/index.tsx",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Smartym-Pro/rc-timeline.git"
+  },
   "targets": {
     "default": {
       "distDir": "./dist"

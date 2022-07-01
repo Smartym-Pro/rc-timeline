@@ -23,8 +23,8 @@ const renderHours = (width: number, startStep: number, finishStep: number, scale
     };
     return { ...res, [year]: { style } };
   }, {});
-  const years = Object.entries(yearHeights).map(([year, item], index) => (
-    <div style={(item as any).style} className="Kalend__text Kalend__calendarBodyMonths__text">
+  const years = Object.entries(yearHeights).map(([year, item]) => (
+    <div key={year} style={(item as any).style} className="Kalend__text Kalend__calendarBodyMonths__text">
       {year}
     </div>
   ));

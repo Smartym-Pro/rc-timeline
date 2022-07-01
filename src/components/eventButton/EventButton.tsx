@@ -255,7 +255,7 @@ const EventButton = (props: { item: EventState }) => {
     <ButtonBase
       id={item.id}
       style={style}
-      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${item.meta}_background-color`}
+      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${item.meta?.type}_background-color`}
       onClick={handleEventClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
@@ -264,7 +264,7 @@ const EventButton = (props: { item: EventState }) => {
         onClick={(e) => {
           e.stopPropagation();
           if (onDeleteClick) {
-            onDeleteClick(item.id, item.meta as string);
+            onDeleteClick(item.id, item.meta?.type as string);
           }
         }}
       >
