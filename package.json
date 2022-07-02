@@ -1,6 +1,6 @@
 {
   "name": "@smartym-pro/hrm-timeline",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "source": "src/index.tsx",
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"

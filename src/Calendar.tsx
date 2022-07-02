@@ -5,10 +5,11 @@ import { CalendarEvent } from './common/interface';
 import { DateTime } from 'luxon';
 import { TopControl } from './components/controls/TopControl';
 
-const Calendar = (props: { items: CalendarEvent[] }) => {
+const Redraw = ({ items }: { items: { startAt: string | undefined; endAt: string | undefined }[] }) => {
   const [store, dispatch] = useContext(Context);
+
   useEffect(() => {
-    const dates = props.items.reduce(
+    const dates = items.reduce(
       (res, cur) => {
         if (cur.startAt && DateTime.fromISO(cur.startAt).ts < res.startAt) {
           res.startAt = DateTime.fromISO(cur.startAt).startOf('month').ts;
@@ -25,11 +26,15 @@ const Calendar = (props: { items: CalendarEvent[] }) => {
     const startStep = Math.ceil(min.diff(DateTime.local(), ['months']).months);
     const finishStep = Math.ceil(max.diff(DateTime.local(), ['month']).months);
     dispatch({ type: 'bothSteps', payload: { startStep, finishStep } });
-  }, [props.items]);
+  }, [JSON.stringify(items)]);
+  return <></>;
+};
 
+const Calendar = (props: { items: CalendarEvent[] }) => {
   return (
     <TopControl>
-      <TimeTable events={props.items ? props.items : []} />
+      <Redraw items={props.items.map(({ startAt, endAt }) => ({ startAt, endAt }))} />;
+      <TimeTable events={props.items} />
     </TopControl>
   );
 };

@@ -22,7 +22,7 @@ const DimensionsLayoutLayer = (props: { children: any }) => {
     });
 
     resizeObserver.observe(el);
-  }, [document?.querySelector('.Kalend__Calendar__root')]);
+  }, []);
 
   useEffect(() => {
     const el = document?.querySelector('.Kalend__Calendar__root');
