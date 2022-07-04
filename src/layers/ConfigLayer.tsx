@@ -1,7 +1,8 @@
 import { Callbacks } from '../common/interface';
 import { Context } from '../context/store';
 import { TimelineProps } from '../index';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
+// eslint-disable-next-line
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -16,7 +17,7 @@ export const createCallbacks = (props: TimelineProps): Callbacks => {
 };
 
 const ConfigLayer = (props: TimelineProps & { children: JSX.Element }) => {
-  const [store, dispatch] = useContext(Context);
+  const [, dispatch] = useContext(Context);
   const setContext = (type: string, payload: any) => {
     dispatch({ type, payload });
   };
@@ -26,7 +27,7 @@ const ConfigLayer = (props: TimelineProps & { children: JSX.Element }) => {
     setContext('callbacks', callbacks);
     setContext('isAsc', props.sortDirection === 'ASC' ? true : false);
   };
-
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     initFromProps();
   }, []);

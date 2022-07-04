@@ -10,7 +10,8 @@ import Calendar from './Calendar';
 import ConfigLayer from './layers/ConfigLayer';
 import DimensionsLayoutLayer from './layers/DimensionsLayoutLayer';
 import StoreProvider from './context/store';
-import React, { useState, useLayoutEffect } from 'react';
+import React, { useRef } from 'react';
+import {isEqual} from 'lodash';
 export type { CalendarEvent };
 export type OnEventClickData = CalendarEvent;
 export type OnNewEventClickData = NewEventClickData;
@@ -26,31 +27,28 @@ export interface TimelineProps {
   preventUpdate?: boolean;
 }
 
+const MemoizedCalendar = React.memo(
+  ({ props, items }: { props: TimelineProps; items: CalendarEvent[] }) => (
+    <div className="Kalend__Calendar__root Kalend__main">
+      <StoreProvider {...props}>
+        <ConfigLayer {...props}>
+          <DimensionsLayoutLayer>
+            <Calendar items={items as CalendarEvent[]} />
+          </DimensionsLayoutLayer>
+        </ConfigLayer>
+      </StoreProvider>
+    </div>
+  ),
+  (oldP, nextP) => isEqual(oldP.items, nextP.items),
+);
+
 const Timeline = (props: TimelineProps) => {
-  const [items, setItems] = useState([] as CalendarEvent[]);
+  const itemsRef = useRef([] as CalendarEvent[]);
+  if (!props.preventUpdate) {
+    itemsRef.current = props.items as CalendarEvent[];
+  }
 
-  React.useLayoutEffect(() => {
-    console.log(props.preventUpdate);
-    if (!props.preventUpdate) {
-      setItems(props.items as CalendarEvent[]);
-    }
-  }, [props.items, props.preventUpdate]);
-
-  const calendar = React.useMemo(() => {
-    return (
-      <div className="Kalend__Calendar__root Kalend__main">
-        <StoreProvider {...props}>
-          <ConfigLayer {...props}>
-            <DimensionsLayoutLayer>
-              <Calendar items={items as CalendarEvent[]} />
-            </DimensionsLayoutLayer>
-          </ConfigLayer>
-        </StoreProvider>
-      </div>
-    );
-  }, [items]);
-
-  return <>{calendar}</>;
+  return <MemoizedCalendar props={props} items={itemsRef.current} />;
 };
 
 export default Timeline;

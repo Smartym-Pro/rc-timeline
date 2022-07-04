@@ -1,17 +1,15 @@
-import React, { useContext, useCallback, PropsWithChildren } from 'react';
+import React, { useContext, PropsWithChildren } from 'react';
 import { Context } from '../../context/store';
 
 export const TopControl = ({ children }: PropsWithChildren<{}>) => {
   const [store, dispatch] = useContext(Context);
-  const changeMonth = useCallback(
+  const changeMonth = 
     (type: 'startStep' | 'finishStep', payload) => {
       dispatch({
         type: store.isAsc ? type : type === 'finishStep' ? 'startStep' : 'finishStep',
         payload: store.isAsc ? payload : -1 * payload,
       });
-    },
-    [store.isAsc],
-  );
+    };
   return (
     <div className="top-control__wrapper">
       <div className="top-control">

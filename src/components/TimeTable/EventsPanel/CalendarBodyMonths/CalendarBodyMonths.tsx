@@ -1,7 +1,5 @@
 import { CALENDAR_OFFSET_LEFT } from '../../../../common/constants';
-import { Context } from '../../../../context/store';
 import { createVerticalMonths } from '../../../../utils/common';
-import { useContext } from 'react';
 import React from 'react';
 
 const renderHours = (width: number, startStep: number, finishStep: number, scaleCoeff: number, isAsc: boolean) => {
@@ -59,11 +57,22 @@ const renderHours = (width: number, startStep: number, finishStep: number, scale
   );
 };
 
-const CalendarBodyMonths = () => {
-  const [store, dispatch] = useContext(Context);
-  const { width, startStep, finishStep, height, scaleCoeff, isAsc } = store;
+const CalendarBodyMonths = ({
+  width,
+  startStep,
+  finishStep,
+  height,
+  scaleCoeff,
+  isAsc,
+}: {
+  width: number;
+  startStep: number;
+  finishStep: number;
+  height: number;
+  scaleCoeff: number;
+  isAsc: boolean;
+}) => {
   const hours: any = renderHours(width, startStep, finishStep, scaleCoeff, isAsc);
-
   return (
     <div className="Kalend__calendarBodyMonths__wrapper" style={{ height, width: 90 }}>
       {hours}
@@ -71,4 +80,4 @@ const CalendarBodyMonths = () => {
   );
 };
 
-export default CalendarBodyMonths;
+export default React.memo(CalendarBodyMonths);

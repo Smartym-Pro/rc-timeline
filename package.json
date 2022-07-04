@@ -1,6 +1,6 @@
 {
   "name": "@smartym-pro/hrm-timeline",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "source": "src/index.tsx",
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"
@@ -51,7 +51,8 @@
     "@parcel/transformer-typescript-types": "2.6.1",
     "@swc/helpers": "0.4.2",
     "parcel": "2.0.1",
-    "cross-env": "5.0.5"
+    "cross-env": "5.0.5",
+    "lodash": "4.17.21"
   },
   "scripts": {
     "start": "react-scripts start",

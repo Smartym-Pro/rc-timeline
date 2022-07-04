@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Context } from './context/store';
 import TimeTable from './components/TimeTable/TimeTable';
 import { CalendarEvent } from './common/interface';
@@ -6,8 +6,8 @@ import { DateTime } from 'luxon';
 import { TopControl } from './components/controls/TopControl';
 
 const Redraw = ({ items }: { items: { startAt: string | undefined; endAt: string | undefined }[] }) => {
-  const [store, dispatch] = useContext(Context);
-
+  const [, dispatch] = useContext(Context);
+  /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const dates = items.reduce(
       (res, cur) => {

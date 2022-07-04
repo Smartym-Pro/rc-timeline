@@ -1,4 +1,4 @@
-import { ReactNode, useRef, SyntheticEvent } from 'react';
+import { ReactNode, useRef } from 'react';
 import React from 'react';
 import { EventStyle } from '../../common/interface';
 

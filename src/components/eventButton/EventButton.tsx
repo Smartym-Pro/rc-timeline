@@ -1,7 +1,7 @@
-import { useContext, useEffect, useReducer, useRef } from 'react';
+import { useLayoutEffect, useReducer, useRef } from 'react';
 import React from 'react';
 import { EventStyle, CalendarEvent, EventState } from '../../common/interface';
-import { Context, Store } from '../../context/store';
+import { Store } from '../../context/store';
 import { onMoveNormalEvent, onResizeNormalEvent } from './utils/dragging';
 import { disableTouchDragging, eventButtonInitialState } from './EventButton.utils';
 import ButtonBase from '../buttonBase/ButtonBase';
@@ -12,12 +12,8 @@ import { getDateFromPosition } from '../../utils/sizes';
 // ref to cancel timout
 let timeoutRef: any;
 
-const EventButton = (props: { item: EventState }) => {
-  const { item } = props;
-  //const event = item;
-
+const EventButton = ({ item, store }: { item: EventState; store }) => {
   const [state, dispatchState]: any = useReducer(stateReducer, eventButtonInitialState);
-
   const setState = (stateName: string, data: number | string | boolean): void => {
     const payload = { stateName, data };
     dispatchState({ state, payload });
@@ -30,13 +26,9 @@ const EventButton = (props: { item: EventState }) => {
   const eventWasChangedRef = useRef(false);
   const endAtRef = useRef(null);
 
-  const [store] = useContext(Context);
-
-  const { width, callbacks } = store as Store;
+  const { callbacks } = store as Store;
 
   const { onEventClick, onEventDragFinish, onDeleteClick } = callbacks;
-
-  const columnWidth: number = width;
 
   const style: EventStyle = {
     position: 'absolute',
@@ -75,8 +67,8 @@ const EventButton = (props: { item: EventState }) => {
     setState('width', layout.width);
     setState('height', layout.height);
   };
-
-  useEffect(() => {
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useLayoutEffect(() => {
     setLayout(item);
   }, [item]);
 
@@ -129,6 +121,10 @@ const EventButton = (props: { item: EventState }) => {
             startAt: nextEndAt ? nextEndAt.startOf('month').toISO() : item.startAt().startOf('month').toISO(),
             endAt: item.endAt.startOf('month').toISO(),
           };
+      const reference = store.isAsc ? item.endAt : item.startAt;
+      if (reference.c.year === nextEndAt.c.year && reference.c.month === nextEndAt.c.month) {
+        setLayout(item); // month's line not crossed, back to previous state
+      }
       const updatedEvent = {
         ...item,
         ...changes,
@@ -190,6 +186,11 @@ const EventButton = (props: { item: EventState }) => {
         endAt: store.isAsc ? newEndAt.toISO() : newEndAt.plus({ month: 1 }).toISO(),
       };
 
+      const unchangedDelta = store.isAsc ? 0 : -1;
+      if (monthDelta === unchangedDelta) {
+        // month's line not crossed, restore previous state
+        setLayout(item);
+      }
       if (newEvent) {
         onEventDragFinish(newEvent);
       }
@@ -215,10 +216,6 @@ const EventButton = (props: { item: EventState }) => {
   };
 
   const onMouseDownLong = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (disableTouchDragging(e as any)) {
-      return;
-    }
-
     setState('isDragging', true);
     draggingRef.current = true;
 
@@ -301,4 +298,6 @@ const EventButton = (props: { item: EventState }) => {
   );
 };
 
-export default EventButton;
+export default React.memo(EventButton, (oldP, nextP) => {
+  return JSON.stringify(oldP) === JSON.stringify(nextP);
+});

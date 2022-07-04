@@ -1,4 +1,3 @@
-import { CalendarEvent } from '../../../common/interface';
 import { Context } from '../../../context/store';
 import { DateTime } from 'luxon';
 import { disableTouchDragging } from '../../eventButton/EventButton.utils';
@@ -10,13 +9,6 @@ import { getDateFromPosition } from '../../../utils/sizes';
 import React from 'react';
 import { EventState } from '../../../common/interface';
 
-const renderEvents = (dataset: EventState[]) => {
-  return dataset.map((eventRaw: EventState) => {
-    const item: CalendarEvent = eventRaw;
-    return <EventButton key={item.id} item={eventRaw} />;
-  });
-};
-
 export const HOUR_DIVIDER = 4;
 
 interface EventsPanelProps {
@@ -25,7 +17,7 @@ interface EventsPanelProps {
 const EventsPanel = (props: EventsPanelProps) => {
   const { data } = props;
   const [store] = useContext(Context);
-  const { width, callbacks, isAsc } = store;
+  const { callbacks } = store;
   const { onNewEventClick } = callbacks;
 
   const [offsetTop, setOffsetTop] = useState<any>(null);
@@ -253,7 +245,11 @@ const EventsPanel = (props: EventsPanelProps) => {
   return (
     <div id="Kalend__draw-panel" style={panelStyle} onMouseDown={onMouseDown} onMouseUp={onMouseUp} className="Kalend__draw-panel">
       {/*<CurrentHourLine />*/}
-      {dataForDrawPanel && dataForDrawPanel.length > 0 ? renderEvents(dataForDrawPanel) : null}
+      {dataForDrawPanel && dataForDrawPanel.length > 0
+        ? dataForDrawPanel.map((eventRaw: EventState) => {
+            return <EventButton key={eventRaw.id} item={eventRaw} store={store} />;
+          })
+        : null}
 
       {isDraggingRef.current ? (
         <div

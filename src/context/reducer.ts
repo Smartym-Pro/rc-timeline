@@ -1,7 +1,6 @@
 // tslint:disable-next-line:cyclomatic-complexity
 import { Store } from './store';
 import { createVerticalMonths } from '../utils/common';
-import StateReducer from '../utils/stateReducer';
 
 export const getHeight = (start: number, finish: number, scaleCoeff: number) => {
   const verticalMonths = createVerticalMonths(start, finish, scaleCoeff);
