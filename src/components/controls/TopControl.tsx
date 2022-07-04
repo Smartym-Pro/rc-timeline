@@ -3,13 +3,12 @@ import { Context } from '../../context/store';
 
 export const TopControl = ({ children }: PropsWithChildren<{}>) => {
   const [store, dispatch] = useContext(Context);
-  const changeMonth = 
-    (type: 'startStep' | 'finishStep', payload) => {
-      dispatch({
-        type: store.isAsc ? type : type === 'finishStep' ? 'startStep' : 'finishStep',
-        payload: store.isAsc ? payload : -1 * payload,
-      });
-    };
+  const changeMonth = (type: 'startStep' | 'finishStep', payload) => {
+    dispatch({
+      type: store.isAsc ? type : type === 'finishStep' ? 'startStep' : 'finishStep',
+      payload: store.isAsc ? payload : -1 * payload,
+    });
+  };
   return (
     <div className="top-control__wrapper">
       <div className="top-control">
@@ -26,7 +25,7 @@ export const TopControl = ({ children }: PropsWithChildren<{}>) => {
           {store.scaleCoeff}
         </div>
       </div>
-      <div style={{ position: 'relative', height: store.height + 5 }}>{children}</div>
+      <div style={{ position: 'relative', height: store.height + 25 }}>{children}</div>
       <div className="bottom-control">
         <button onClick={() => changeMonth('finishStep', 6)}>+6 months</button>
         <button onClick={() => changeMonth('finishStep', -6)}>-6 months</button>

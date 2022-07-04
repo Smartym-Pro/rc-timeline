@@ -10,7 +10,7 @@
   flex-direction: row;
   padding: 0;
   margin: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
   overflow-x: hidden;
   //position: relative;
   height: 100%;
@@ -19,4 +19,17 @@
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+.Kalend__Calendar__table-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.Kalend__Calendar__table__type-switcher {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }

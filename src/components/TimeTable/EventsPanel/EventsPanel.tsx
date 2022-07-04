@@ -13,9 +13,10 @@ export const HOUR_DIVIDER = 4;
 
 interface EventsPanelProps {
   data: EventState[];
+  type: string;
 }
 const EventsPanel = (props: EventsPanelProps) => {
-  const { data } = props;
+  const { data, type = 'workState' } = props;
   const [store] = useContext(Context);
   const { callbacks } = store;
   const { onNewEventClick } = callbacks;
@@ -166,7 +167,7 @@ const EventsPanel = (props: EventsPanelProps) => {
         {
           event,
           ...changes,
-          meta: data[0]?.meta?.type ? data[0].meta : { type: 'workState' },
+          meta: { type },
         },
         event,
       );
