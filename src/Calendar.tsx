@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from 'react';
-import { Context } from './context/store';
+import React from 'react';
 import TimeTable from './components/TimeTable/TimeTable';
-import { CalendarEvent } from './common/interface';
+import { CalendarEvents } from './common/interface';
 import { TopControl } from './components/controls/TopControl';
 
-const Calendar = (props: { items: CalendarEvent[] }) => {
+const Calendar = (props: { items: CalendarEvents }) => {
   return (
     <TopControl>
-      <TimeTable events={props.items} />
+      <TimeTable events={props.items} eventsTypes={Object.keys(props.items).join(',')} />
     </TopControl>
   );
 };

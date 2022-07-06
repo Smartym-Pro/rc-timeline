@@ -7,6 +7,7 @@ export interface CalendarEvent {
   summary?: string;
   meta?: any;
 }
+export type CalendarEvents = { [type: string]: CalendarEvent[] };
 
 export interface NormalEventPosition {
   event: CalendarEvent;

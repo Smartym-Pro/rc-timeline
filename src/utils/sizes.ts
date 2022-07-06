@@ -106,7 +106,14 @@ const getLeftAndHeight = (sizesWithTop: EventState[]) => {
   return [...sizes];
 };
 
-export const getComponentsSizes = (components: CalendarEvent[], start: number, scaleCoeff = 1, isAsc: boolean, height: number) => {
+export const getComponentsSizes = (
+  components: CalendarEvent[],
+  start: number,
+  scaleCoeff = 1,
+  isAsc: boolean,
+  height: number,
+  type: string,
+) => {
   const sizesWithTop = components.map(({ startAt: startDate, endAt: endDate, summary, id, meta }) => {
     const dayZeros = {
       hour: 0,
@@ -126,7 +133,7 @@ export const getComponentsSizes = (components: CalendarEvent[], start: number, s
       offsetLeft: '0',
       width: '100%',
       endAt,
-      meta,
+      meta: { type },
       startAt,
       summary: `${startAt.year}: ${startAt.monthShort} - ${endAt.year}: ${endAt.monthShort}  ${summary}`,
       id,

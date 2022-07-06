@@ -252,7 +252,10 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
     <ButtonBase
       id={item.id}
       style={style}
-      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${item.meta?.type}_background-color`}
+      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${(item.meta?.type || '')
+        .split(' ')
+        .join('-')
+        .toLowerCase()}_background-color`}
       onClick={handleEventClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}

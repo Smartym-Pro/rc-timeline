@@ -1,23 +1,32 @@
 import { CALENDAR_OFFSET_LEFT } from '../../common/constants';
 import CalendarBodyMonths from './EventsPanel/CalendarBodyMonths/CalendarBodyMonths';
 import EventsPanel from './EventsPanel/EventsPanel';
-import { CalendarEvent } from '../../common/interface';
+import { CalendarEvents, CalendarEvent } from '../../common/interface';
 import { Context } from '../../context/store';
 import { getComponentsSizes } from '../../utils/sizes';
 import { isEqual } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 
-const TypeSwitcher = ({ types, change }: { types: string[]; change: (val: string[]) => void }) => {
+const TypeSwitcher = ({
+  visibleTypes,
+  allTypes,
+  change,
+}: {
+  visibleTypes: string[];
+  allTypes: string[];
+  change: (val: string[]) => void;
+}) => {
+  const notShownTypes = allTypes.filter((type) => !visibleTypes.includes(type));
   return (
     <div className="Kalend__Calendar__table__type-switcher">
-      {['education', 'career', 'projects'].map((type) => (
+      {[...visibleTypes, ...notShownTypes].map((type) => (
         <div>
           <input
             type="checkbox"
-            checked={types.includes(type)}
+            checked={visibleTypes.includes(type)}
             onChange={() => {
-              const nextTypes = types.includes(type) ? types.filter((item) => item !== type) : [...types, type];
+              const nextTypes = visibleTypes.includes(type) ? visibleTypes.filter((item) => item !== type) : [...visibleTypes, type];
               change(nextTypes);
             }}
           />{' '}
@@ -68,15 +77,23 @@ const MemoizedEventPanel = React.memo(
     height: number;
     type: string;
   }) => {
-    return <EventsPanel type={type} data={getComponentsSizes(item, startStep, scaleCoeff, isAsc, height)} />;
+    return <EventsPanel type={type} data={getComponentsSizes(item, startStep, scaleCoeff, isAsc, height, type)} />;
   },
   (oldP, nextP) => {
     return isEqual(oldP, nextP);
   },
 );
 
-const TimeTable = (props: { events: CalendarEvent[] }) => {
-  const [visibleTypes, setVisibleTypes] = useState(['projects', 'career', 'education']);
+const TimeTable = (props: { events: CalendarEvents; eventsTypes: string }) => {
+  const [visibleTypes, setVisibleTypes] = useState(Object.keys(props.events));
+  const [allTypes, setAllTypes] = useState(Object.keys(props.events));
+
+  /* eslint-disable react-hooks/exhaustive-deps */
+  useEffect(() => {
+    setVisibleTypes(Object.keys(props.events));
+    setAllTypes(Object.keys(props.events));
+  }, [props.eventsTypes]);
+
   const style = {
     paddingLeft: CALENDAR_OFFSET_LEFT,
     height: 'calc(100% - 20px)',
@@ -85,23 +102,11 @@ const TimeTable = (props: { events: CalendarEvent[] }) => {
   };
   const [store] = useContext(Context);
 
-  const items = [] as { [type: string]: CalendarEvent[] }[];
-  if (visibleTypes.includes('education')) {
-    const educations = props.events.filter(({ meta }) => meta?.type === 'educationState');
-    items.push({ educationState: educations });
-  }
-  if (visibleTypes.includes('career')) {
-    const careers = props.events.filter(({ meta }) => meta?.type === 'careerState');
-    items.push({ careerState: careers });
-  }
-  if (visibleTypes.includes('projects')) {
-    const works = props.events.filter(({ meta }) => !meta?.type || meta?.type === 'workState');
-    items.push({ workState: works });
-  }
+  const items = visibleTypes.map((key) => ({ [key]: props.events[key] }));
 
   return (
     <div className="Kalend__Calendar__table-wrapper">
-      <TypeSwitcher types={visibleTypes} change={setVisibleTypes} />
+      <TypeSwitcher visibleTypes={visibleTypes} allTypes={allTypes} change={setVisibleTypes} />
       <div
         style={style}
         className="Kalend__Calendar__table Kalend__CalendarBody"
