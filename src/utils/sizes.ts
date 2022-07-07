@@ -123,8 +123,10 @@ export const getComponentsSizes = (
     };
 
     const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
-    const startAt = startDate ? DateTime.fromISO(startDate).startOf('month').set(dayZeros) : calendarStart;
-    const endAt = endDate ? DateTime.fromISO(endDate).endOf('month').set(dayZeros) : calendarStart.endOf('month').set(dayZeros);
+    const firstVal = startDate ? DateTime.fromISO(startDate).startOf('month').set(dayZeros) : calendarStart;
+    const secondVal = endDate ? DateTime.fromISO(endDate).endOf('month').set(dayZeros) : calendarStart.endOf('month').set(dayZeros);
+    const startAt = firstVal <= secondVal ? firstVal : secondVal;
+    const endAt = secondVal >= firstVal ? secondVal : firstVal;
     const offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);
     const eventHeight = Math.round(endAt.diff(startAt, 'day').days * scaleCoeff);
     return {
@@ -133,7 +135,7 @@ export const getComponentsSizes = (
       offsetLeft: '0',
       width: '100%',
       endAt,
-      meta: { type },
+      meta: { ...meta, type },
       startAt,
       summary: `${startAt.year}: ${startAt.monthShort} - ${endAt.year}: ${endAt.monthShort}  ${summary}`,
       id,
