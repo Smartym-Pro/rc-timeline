@@ -1,0 +1,351 @@
+.Kalend__text {
+  margin: 0;
+  padding: 0;
+  font-family: monospace, SansSerif, sans-serif, serif;
+  font-size: 1em;
+}
+
+.Kalend__Calendar__root {
+  width: inherit;
+  height: 100%;
+  flex-direction: column;
+  font-size: 10px;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.Kalend__Calendar__table {
+  display: inherit;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.Kalend__button {
+  padding: inherit;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  -webkit-appearance: auto;
+  -ms-appearance: auto;
+  appearance: auto;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  line-height: inherit;
+  text-transform: none;
+  text-indent: inherit;
+  text-shadow: none;
+  text-align: inherit;
+  align-items: inherit;
+  box-sizing: inherit;
+  border: none;
+  border-width: inherit;
+  border-style: inherit;
+  border-color: inherit;
+  border-image: inherit;
+  box-sizing: border-box;
+  margin: 0;
+  display: flex;
+}
+
+.Kalend__text-light {
+  color: #f5f5f5;
+}
+
+.Kalend__text-dark {
+  color: #1d1f26;
+}
+
+.Kalend__color-text-primary, .Kalend__color-background-primary {
+  color: #ec407a;
+}
+
+.Kalend__color-text-gray300 {
+  color: #e0e0e0;
+}
+
+.Kalend__color-text-gray800 {
+  color: #424242;
+}
+
+.Kalend__color-text-base {
+  color: #1d1f26;
+}
+
+.Kalend__ButtonBase {
+  min-height: 20px;
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #1d1f26;
+  border-radius: 10px;
+  outline-style: none;
+  font-size: 1.6em;
+  font-weight: 400;
+  position: relative;
+  overflow: hidden;
+}
+
+.Kalend__ButtonBase:hover {
+  border: 1px solid #00f;
+}
+
+.Kalend__ButtonBase__animation {
+  background-color: rgba(50, 50, 50, .3);
+  border-radius: 50%;
+  -webkit-animation: Kalend__ripple__animation .5s ease-in;
+  animation: Kalend__ripple__animation .5s ease-in;
+  position: absolute;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+@-webkit-keyframes Kalend__ripple__animation {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes Kalend__ripple__animation {
+  from {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+
+  to {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.Kalend__full-screen {
+  height: 100%;
+  width: 100%;
+}
+
+.Kalend__CalendarBody {
+  height: 100%;
+  flex-direction: row;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.Kalend__Calendar__table-wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.Kalend__Calendar__table__type-switcher {
+  height: 20px;
+  width: 100%;
+  justify-content: space-around;
+  align-items: center;
+  display: flex;
+}
+
+.Kalend__draw-panel {
+  flex-direction: column;
+  position: relative;
+}
+
+.Kalend__draw-panel__border-left {
+  border-left: .6px solid #e0e0e0;
+}
+
+.Kalend__calendarBodyMonths__wrapper {
+  z-index: 2;
+  height: 100%;
+  width: 40px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 20px;
+  left: 0;
+}
+
+.Kalend__calendarBodyMonths__container {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+}
+
+.Kalend__calendarBodyMonths__text {
+  text-align-vertical: top;
+  z-index: 10;
+  color: #757575;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  font-size: .9em;
+  position: absolute;
+}
+
+.Kalend__calendarBodyMonths__line {
+  height: 1px;
+  z-index: 2;
+  background: #e0e0e0;
+  position: absolute;
+  left: 90px;
+  width: 100vw !important;
+}
+
+.Kalend__Event__animate {
+  -ms-animation-fill-mode: forwards;
+  -webkit-animation-name: Kalend__EventDetail_animationShow;
+  animation-name: Kalend__EventDetail_animationShow;
+  -webkit-animation-duration: .3s;
+  animation-duration: .3s;
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+}
+
+.Kalend__Event, .Kalend__Event-normal {
+  z-index: 2;
+  color: #fff;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  opacity: 1 !important;
+  min-height: 17px !important;
+  border-radius: 6px !important;
+}
+
+.Kalend__Event-normal {
+  border: 1px solid #fff;
+}
+
+.Kalend__EventButton__elevation {
+  z-index: 9999 !important;
+  cursor: grab !important;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, .4) !important;
+}
+
+.Kalend__EventButton__resizing_wrapper {
+  height: 100vh;
+  width: 100vw;
+  z-index: 99;
+  cursor: n-resize;
+  background: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@-webkit-keyframes Kalend__EventDetailHeader_animationShow {
+  0% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes Kalend__EventDetailHeader_animationShow {
+  0% {
+    visibility: hidden;
+  }
+
+  100% {
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes Kalend__EventDetail_animationShow {
+  0% {
+    opacity: .2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes Kalend__EventDetail_animationShow {
+  0% {
+    opacity: .2;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.Kalend__Event__summary {
+  webkit-line-clamp: 1;
+  opacity: 1;
+  white-space: inherit;
+  -webkit-box-orient: vertical;
+  margin: 0;
+  padding: 5px 50px 6px 4px;
+  font-size: .8em;
+  font-weight: 600;
+  display: -webkit-box;
+  overflow: hidden;
+}
+
+@media (min-width: 750px) {
+  .Kalend__Event__summary {
+    font-size: .8em;
+  }
+}
+
+.top-control__wrapper {
+  height: 100%;
+  position: relative;
+}
+
+.top-control, .bottom-control {
+  padding-top: 30px;
+  padding-bottom: 5px;
+  display: flex;
+}
+
+.top-control button, .bottom-control button {
+  color: indigo;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0);
+  border: 0;
+  outline: 0;
+}
+
+.top-control button:hover, .bottom-control button:hover {
+  color: #fff;
+  background: indigo;
+}
+
+.top-control__item {
+  display: "flex";
+}
+
+.top-control__item_left {
+  display: "felx";
+  align-items: center;
+  padding-left: 30px;
+}
+
+.bottom-control {
+  padding-top: 5px;
+  padding-left: 30px;
+}
+
+/*# sourceMappingURL=index.css.map */

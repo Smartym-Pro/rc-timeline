@@ -4,9 +4,11 @@ import { CalendarEvents } from './common/interface';
 import { TopControl } from './components/controls/TopControl';
 
 const Calendar = (props: { items: CalendarEvents }) => {
+  const eventsTypes = Object.keys(props.items).join(',');
+
   return (
     <TopControl>
-      <TimeTable events={props.items} eventsTypes={Object.keys(props.items).join(',')} />
+      <TimeTable key={eventsTypes} events={props.items} eventsTypes={eventsTypes} />
     </TopControl>
   );
 };

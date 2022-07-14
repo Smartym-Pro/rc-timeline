@@ -1,7 +1,6 @@
 import { Callbacks } from '../common/interface';
 import { createCallbacks } from '../layers/ConfigLayer';
 import { createContext, useReducer } from 'react';
-import { getHeight } from './reducer';
 import Reducer from './reducer';
 import React from 'react';
 export interface Store {
@@ -27,7 +26,7 @@ const StoreProvider = ({ children, ...props }) => {
     finishStep: END_MONTH,
     scaleCoeff: SCALE_COEFF,
     width: 0,
-    height: getHeight(START_MONTH, END_MONTH, SCALE_COEFF),
+    height: 0,
     callbacks: createCallbacks({}),
     isAsc: true,
     style: {

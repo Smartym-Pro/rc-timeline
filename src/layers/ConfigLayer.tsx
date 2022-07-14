@@ -32,10 +32,6 @@ const ConfigLayer = (props: TimelineProps & { children: JSX.Element }) => {
     initFromProps();
   }, []);
 
-  useEffect(() => {
-    initFromProps();
-  }, []);
-
   return props.children;
 };
 

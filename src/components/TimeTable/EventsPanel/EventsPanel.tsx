@@ -1,9 +1,7 @@
-import { Context } from '../../../context/store';
 import { DateTime } from 'luxon';
 import { disableTouchDragging } from '../../eventButton/EventButton.utils';
 import { createVerticalMonths } from '../../../utils/common';
-import { useContext, useRef, useState } from 'react';
-//import CurrentHourLine from '../../currentHourLine/CurrentHourLine';
+import { useRef, useState } from 'react';
 import EventButton from '../../eventButton/EventButton';
 import { getDateFromPosition } from '../../../utils/sizes';
 import React from 'react';
@@ -14,10 +12,11 @@ export const HOUR_DIVIDER = 4;
 interface EventsPanelProps {
   data: EventState[];
   type: string;
+  store;
 }
 const EventsPanel = (props: EventsPanelProps) => {
   const { data, type = 'workState' } = props;
-  const [store] = useContext(Context);
+  const { store } = props;
   const { callbacks } = store;
   const { onNewEventClick } = callbacks;
 
@@ -242,7 +241,6 @@ const EventsPanel = (props: EventsPanelProps) => {
 
     isUpdating.current = false;
   };
-
   return (
     <div id="Kalend__draw-panel" style={panelStyle} onMouseDown={onMouseDown} onMouseUp={onMouseUp} className="Kalend__draw-panel">
       {/*<CurrentHourLine />*/}

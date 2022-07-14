@@ -69,6 +69,7 @@ const MemoizedEventPanel = React.memo(
     isAsc,
     height,
     type,
+    store,
   }: {
     item: CalendarEvent[];
     startStep: number;
@@ -76,8 +77,9 @@ const MemoizedEventPanel = React.memo(
     isAsc: boolean;
     height: number;
     type: string;
+    store;
   }) => {
-    return <EventsPanel type={type} data={getComponentsSizes(item, startStep, scaleCoeff, isAsc, height, type)} />;
+    return <EventsPanel type={type} store={store} data={getComponentsSizes(item, startStep, scaleCoeff, isAsc, height, type)} />;
   },
   (oldP, nextP) => {
     return isEqual(oldP, nextP);
@@ -134,6 +136,7 @@ const TimeTable = (props: { events: CalendarEvents; eventsTypes: string }) => {
                 isAsc={store.isAsc}
                 height={store.height}
                 type={type}
+                store={store}
               />
             </div>
           );
