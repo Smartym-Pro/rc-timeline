@@ -46,7 +46,7 @@ export interface EventState {
   startAt: DateTime;
   summary: string;
   id: string;
-  type?: 'education' | 'project' | 'company';
+  type?: string;
   zIndex?: number;
   meta?: any;
 }
