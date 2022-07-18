@@ -30,27 +30,27 @@ export interface TimelineProps {
 }
 
 const MemoizedCalendar = React.memo(
-  ({ props, items }: { props: TimelineProps; items: CalendarEvents }) => (
+  ({ props }: { props: TimelineProps }) => (
     <div className="Kalend__Calendar__root Kalend__main">
       <StoreProvider {...props}>
         <ConfigLayer {...props}>
           <DimensionsLayoutLayer>
-            <Calendar items={items as CalendarEvents} />
+            <Calendar items={props.items as CalendarEvents} />
           </DimensionsLayoutLayer>
         </ConfigLayer>
       </StoreProvider>
     </div>
   ),
-  (oldP, nextP) => isEqual(oldP.items, nextP.items),
+  (oldP, nextP) => isEqual(oldP, nextP),
 );
 
 const Timeline = (props: TimelineProps) => {
-  const itemsRef = useRef({} as CalendarEvents);
+  const propsRef = useRef({} as TimelineProps);
   if (!props.preventUpdate) {
-    itemsRef.current = props.items as CalendarEvents;
+    propsRef.current = props;
   }
 
-  return <MemoizedCalendar props={props} items={itemsRef.current} />;
+  return <MemoizedCalendar props={props} />;
 };
 
 export default Timeline;

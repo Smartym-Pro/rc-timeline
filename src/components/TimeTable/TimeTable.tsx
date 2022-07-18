@@ -63,7 +63,7 @@ const RedrawHeight = ({ items }: { items: { startAt: string | undefined; endAt: 
 
 const MemoizedEventPanel = React.memo(
   ({
-    item,
+    items,
     startStep,
     scaleCoeff,
     isAsc,
@@ -71,7 +71,7 @@ const MemoizedEventPanel = React.memo(
     type,
     store,
   }: {
-    item: CalendarEvent[];
+    items: CalendarEvent[];
     startStep: number;
     scaleCoeff: number;
     isAsc: boolean;
@@ -79,7 +79,7 @@ const MemoizedEventPanel = React.memo(
     type: string;
     store;
   }) => {
-    return <EventsPanel type={type} store={store} data={getComponentsSizes(item, startStep, scaleCoeff, isAsc, height, type)} />;
+    return <EventsPanel type={type} store={store} data={getComponentsSizes(items, startStep, scaleCoeff, isAsc, height, type)} />;
   },
   (oldP, nextP) => {
     return isEqual(oldP, nextP);
@@ -130,7 +130,7 @@ const TimeTable = (props: { events: CalendarEvents; eventsTypes: string }) => {
             <div key={type} style={{ position: 'relative', width: `${100 / items.length}%` }}>
               {' '}
               <MemoizedEventPanel
-                item={events}
+                items={events}
                 startStep={store.startStep}
                 scaleCoeff={store.scaleCoeff}
                 isAsc={store.isAsc}
