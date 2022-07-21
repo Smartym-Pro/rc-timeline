@@ -5,7 +5,7 @@ interface EventNormalProps {
   event: CalendarEvent;
 }
 
-const EventNormal = (props: EventNormalProps) => {
+const Event = (props: EventNormalProps) => {
   const { event } = props;
 
   return (
@@ -21,4 +21,4 @@ const EventNormal = (props: EventNormalProps) => {
   );
 };
 
-export default EventNormal;
+export default Event;

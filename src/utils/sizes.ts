@@ -123,8 +123,8 @@ export const getComponentsSizes = (
     };
 
     const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
-    const firstVal = startDate ? DateTime.fromISO(startDate).startOf('month').set(dayZeros) : calendarStart;
-    const secondVal = endDate ? DateTime.fromISO(endDate).endOf('month').set(dayZeros) : calendarStart.endOf('month').set(dayZeros);
+    const firstVal = startDate ? DateTime.fromISO(startDate).startOf('month').set(dayZeros) : DateTime.local().startOf('month');
+    const secondVal = endDate ? DateTime.fromISO(endDate).endOf('month').set(dayZeros) : DateTime.local().endOf('month');
     const startAt = firstVal <= secondVal ? firstVal : secondVal;
     const endAt = secondVal >= firstVal ? secondVal : firstVal;
     const offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);

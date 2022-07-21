@@ -1,10 +1,9 @@
-export const onMoveNormalEvent = (e, draggingRef, eventWasChangedRef, offsetTopRef, setState: (key: string, value: number) => void) => {
+export const onMoveEvent = (e, draggingRef, eventWasChangedRef, offsetTopRef, setState: (key: string, value: number) => void, type) => {
   if (!draggingRef.current) {
     return;
   }
 
-  // Get column element for day, where event is placed
-  const drawPanelElement: Element | null = document.getElementById(`Kalend__draw-panel`);
+  const drawPanelElement: Element | null = document.getElementById(`Kalend__draw-panel${type}`);
   if (!drawPanelElement) {
     return;
   }
@@ -29,9 +28,9 @@ export const onMoveNormalEvent = (e, draggingRef, eventWasChangedRef, offsetTopR
   offsetTopRef.current = y;
 };
 
-export const onResizeNormalEvent = (e, endAtRef, offsetTop: number, startStep: number, setState: (key: string, value: number) => void) => {
+export const onResizeEvent = (e, endAtRef, offsetTop: number, setState: (key: string, value: number) => void, type) => {
   // Get column element for day, where event is placed
-  const drawPanelElement = document.getElementById(`Kalend__draw-panel`);
+  const drawPanelElement = document.getElementById(`Kalend__draw-panel${type}`);
   if (!drawPanelElement) {
     return;
   }

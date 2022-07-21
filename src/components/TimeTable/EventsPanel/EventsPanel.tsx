@@ -22,17 +22,14 @@ const EventsPanel = (props: EventsPanelProps) => {
 
   const [offsetTop, setOffsetTop] = useState<any>(null);
   const [offsetTopEnd, setOffsetTopEnd] = useState<any>(null);
-  const startAt: DateTime = useRef(null);
-  const endAt: DateTime = useRef(null);
   const [startAtState, setStartAt] = useState<DateTime | null>(null);
   const [endAtState, setEndAt] = useState<DateTime | null>(null);
 
-  // const [isDraggingNewEvent, setIsDraggingNewEvent] = useState(false);
+  const startAt: DateTime = useRef(null);
+  const endAt: DateTime = useRef(null);
   const newEventStartOffset = useRef(null as null | number);
-  const newEventEndOffset = useRef(null as null | number);
-  const startAtRef = useRef(null);
-  const isDraggingRef = useRef(false);
-  const isUpdating = useRef(false);
+  const isDragging = useRef(false);
+  const isUpdatingExternalData = useRef(false);
 
   const style: any = {
     position: 'absolute',
@@ -43,10 +40,11 @@ const EventsPanel = (props: EventsPanelProps) => {
     zIndex: 9,
     borderRadius: 8,
     opacity: 0.8,
+    color: 'white',
   };
 
   const onMove = (e) => {
-    isDraggingRef.current = true;
+    isDragging.current = true;
     // setIsDraggingNewEvent(true);
 
     e.preventDefault();
@@ -57,7 +55,7 @@ const EventsPanel = (props: EventsPanelProps) => {
     }
 
     // Get column element for day, where event is placed
-    const drawPanelElement: Element | null = document.getElementById(`Kalend__draw-panel`);
+    const drawPanelElement: Element | null = document.getElementById(`Kalend__draw-panel${type}`);
     if (!drawPanelElement) {
       return;
     }
@@ -76,20 +74,13 @@ const EventsPanel = (props: EventsPanelProps) => {
     // initial dragging
     if (newEventStartOffset.current === null) {
       setOffsetTop(y);
-      const startAtValue = getDateFromPosition(y / store.scaleCoeff, store);
-      startAtRef.current = startAtValue;
-      startAt.current = startAtValue;
-      setStartAt(startAtValue);
-
-      setOffsetTop(y);
       setOffsetTopEnd(y);
-      newEventStartOffset.current = y;
-      newEventEndOffset.current = y;
-
-      startAtRef.current = startAtValue;
-      endAt.current = startAtValue;
+      const startAtValue = getDateFromPosition(y / store.scaleCoeff, store);
+      setStartAt(startAtValue);
       setEndAt(startAtValue);
-
+      startAt.current = startAtValue;
+      endAt.current = startAtValue;
+      newEventStartOffset.current = y;
       return;
     }
 
@@ -97,68 +88,57 @@ const EventsPanel = (props: EventsPanelProps) => {
     if (newEventStartOffset.current && y < newEventStartOffset.current) {
       setOffsetTop(y);
       const startAtValue = getDateFromPosition(y / store.scaleCoeff, store);
-
-      startAtRef.current = startAtValue;
-      startAt.current = startAtValue;
       setStartAt(startAtValue);
+      startAt.current = startAtValue;
       return;
     }
 
     // handle dragging down
     setOffsetTopEnd(y);
-
     const endAtValue = getDateFromPosition(y / store.scaleCoeff, store);
-    endAt.current = endAtValue;
     setEndAt(endAtValue);
+    endAt.current = endAtValue;
   };
 
-  /**
-   * Cancel dragging event
-   * remove listeners clean long click timeout and reset state
-   * @param event
-   */
   const onMouseUp = (event) => {
     event.stopPropagation();
     event.preventDefault();
 
-    // clean listeners
     document.removeEventListener('mouseup', onMouseUp, true);
     document.removeEventListener('mousemove', onMove, true);
 
     const targetClass = event.target.className;
 
-    // prevent propagating when clicking on event due to listeners
     if (targetClass.indexOf('Kalend__Event') !== -1) {
       return;
     }
 
-    if (!isDraggingRef.current) {
-      // handleEventClickInternal(event);
+    if (!isDragging.current) {
       return;
     }
 
-    if (isUpdating.current) {
+    if (isUpdatingExternalData.current) {
       return;
     }
 
-    if (onNewEventClick && isDraggingRef.current) {
-      isUpdating.current = true;
+    if (onNewEventClick && isDragging.current) {
+      isUpdatingExternalData.current = true;
 
       if (!startAt?.current?.toUTC()?.toString()) {
-        isDraggingRef.current = false;
-        isUpdating.current = false;
+        isDragging.current = false;
+        isUpdatingExternalData.current = false;
         return;
       }
 
-      isDraggingRef.current = false;
+      isDragging.current = false;
       newEventStartOffset.current = null;
       const changes = store.isAsc
         ? {
             startAt: startAt.current?.startOf('month').toISO(),
-            endAt: endAt.current?.startOf('month').toISO(),
+            endAt: endAt.current?.endOf('month').toISO(),
           }
         : {
-            endAt: startAt.current?.startOf('month').toISO(),
+            endAt: startAt.current?.endOf('month').toISO(),
             startAt: endAt.current?.startOf('month').toISO(),
           };
 
@@ -172,16 +152,11 @@ const EventsPanel = (props: EventsPanelProps) => {
       );
     }
 
-    isDraggingRef.current = false;
-    isUpdating.current = false;
+    isDragging.current = false;
+    isUpdatingExternalData.current = false;
   };
 
-  /**
-   * Start event dragging on long press/touch
-   * Set listeners
-   * @param e
-   */
-  const onMouseDownLong = (e: MouseEvent) => {
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     if (disableTouchDragging(e)) {
       return;
     }
@@ -191,22 +166,6 @@ const EventsPanel = (props: EventsPanelProps) => {
     if (e.button !== 0) return;
     document.addEventListener('mousemove', onMove, true);
     document.addEventListener('mouseup', onMouseUp, true);
-  };
-
-  /**
-   * Initial long press click/touch on event
-   * @param e
-   */
-  const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // if (isDraggingRef.current) {
-    //   onMouseUp(e);
-    //   return;
-    // }
-
-    onMouseDownLong(e as any);
   };
 
   const verticalMonths = createVerticalMonths(store.startStep, store.finishStep, store.scaleCoeff);
@@ -219,52 +178,20 @@ const EventsPanel = (props: EventsPanelProps) => {
   };
 
   const dataForDrawPanel: EventState[] = data;
-  /*const nowPosition: number =
-    dateNow.diff(DateTime.local().set({ hour: 0, minute: 0, second: 0 }), 'minutes').toObject().minutes / (60 / hourHeight);*/
+  const dynamicDates = [
+    <span>{startAtState ? startAtState.year + ':' + startAtState.monthShort : ''}</span>,
+    <span> - </span>,
+    <span>{endAtState ? endAtState.year + ':' + endAtState.monthShort : ''}</span>,
+  ];
 
-  const handleCloseNewEventDrag = (e?) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
-
-    setOffsetTopEnd(null);
-    setOffsetTop(null);
-    // setIsDraggingNewEvent(false);
-    isDraggingRef.current = false;
-    newEventStartOffset.current = null;
-    newEventEndOffset.current = null;
-    startAt.current = null;
-    endAt.current = null;
-    setStartAt(null);
-    setEndAt(null);
-
-    isUpdating.current = false;
-  };
   return (
-    <div id="Kalend__draw-panel" style={panelStyle} onMouseDown={onMouseDown} onMouseUp={onMouseUp} className="Kalend__draw-panel">
-      {/*<CurrentHourLine />*/}
+    <div id={`Kalend__draw-panel${type}`} style={panelStyle} onMouseDown={onMouseDown} onMouseUp={onMouseUp} className="Kalend__draw-panel">
       {dataForDrawPanel && dataForDrawPanel.length > 0
         ? dataForDrawPanel.map((eventRaw: EventState) => {
             return <EventButton key={eventRaw.id} item={eventRaw} store={store} />;
           })
         : null}
-
-      {isDraggingRef.current ? (
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            background: 'transparent',
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            zIndex: 8,
-          }}
-          onClick={handleCloseNewEventDrag}
-        />
-      ) : null}
-      {isDraggingRef.current ? (
+      {isDragging.current ? (
         <div style={style}>
           <div
             style={{
@@ -274,10 +201,8 @@ const EventsPanel = (props: EventsPanelProps) => {
             }}
           >
             <p style={{ color: 'white' }}>Project</p>
-            <p style={{ color: 'white' }}>
-              {startAtState ? startAtState.year + ':' + startAtState.monthShort : ''} -{' '}
-              {endAtState ? endAtState.year + ':' + endAtState.monthShort : ''}
-            </p>
+            {store.isAsc ? dynamicDates : dynamicDates.reverse()}
+            <p style={{ color: 'white' }}></p>
           </div>
         </div>
       ) : null}

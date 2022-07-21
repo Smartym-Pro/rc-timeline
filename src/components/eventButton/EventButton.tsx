@@ -2,10 +2,10 @@ import { useLayoutEffect, useReducer, useRef } from 'react';
 import React from 'react';
 import { EventStyle, CalendarEvent, EventState } from '../../common/interface';
 import { Store } from '../../context/store';
-import { onMoveNormalEvent, onResizeNormalEvent } from './utils/dragging';
+import { onMoveEvent, onResizeEvent } from './utils/dragging';
 import { disableTouchDragging, eventButtonInitialState } from './EventButton.utils';
 import ButtonBase from '../buttonBase/ButtonBase';
-import EventNormal from './eventNormal/EventNormal';
+import Event from './eventNormal/EventNormal';
 import stateReducer from '../../utils/stateReducer';
 import { getDateFromPosition } from '../../utils/sizes';
 
@@ -90,7 +90,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
 
     isResizing.current = true;
 
-    onResizeNormalEvent(e, endAtRef, state.offsetTop, store.startStep, setState);
+    onResizeEvent(e, endAtRef, state.offsetTop, setState, item.meta?.type);
   };
 
   const onMove = (e: MouseEvent) => {
@@ -100,7 +100,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
       return;
     }
 
-    onMoveNormalEvent(e, draggingRef, eventWasChangedRef, offsetTopRef, setState);
+    onMoveEvent(e, draggingRef, eventWasChangedRef, offsetTopRef, setState, item.meta?.type);
   };
 
   const onMouseUpResize = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -270,7 +270,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
       >
         &times;
       </button>
-      <EventNormal event={item} />
+      <Event event={item} />
       {isResizing.current ? (
         <div
           className={'Kalend__EventButton__resizing_wrapper'}
