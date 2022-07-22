@@ -45,7 +45,6 @@ const EventsPanel = (props: EventsPanelProps) => {
 
   const onMove = (e) => {
     isDragging.current = true;
-    // setIsDraggingNewEvent(true);
 
     e.preventDefault();
     e.stopPropagation();
@@ -107,12 +106,6 @@ const EventsPanel = (props: EventsPanelProps) => {
     document.removeEventListener('mouseup', onMouseUp, true);
     document.removeEventListener('mousemove', onMove, true);
 
-    const targetClass = event.target.className;
-
-    if (targetClass.indexOf('Kalend__Event') !== -1) {
-      return;
-    }
-
     if (!isDragging.current) {
       return;
     }
@@ -124,7 +117,7 @@ const EventsPanel = (props: EventsPanelProps) => {
     if (onNewEventClick && isDragging.current) {
       isUpdatingExternalData.current = true;
 
-      if (!startAt?.current?.toUTC()?.toString()) {
+      if (!startAt?.current?.toUTC()?.toISO()?.toString()) {
         isDragging.current = false;
         isUpdatingExternalData.current = false;
         return;
@@ -180,7 +173,6 @@ const EventsPanel = (props: EventsPanelProps) => {
   const dataForDrawPanel: EventState[] = data;
   const dynamicDates = [
     <span>{startAtState ? startAtState.year + ':' + startAtState.monthShort : ''}</span>,
-    <span> - </span>,
     <span>{endAtState ? endAtState.year + ':' + endAtState.monthShort : ''}</span>,
   ];
 
@@ -201,7 +193,15 @@ const EventsPanel = (props: EventsPanelProps) => {
             }}
           >
             <p style={{ color: 'white' }}>Project</p>
-            {store.isAsc ? dynamicDates : dynamicDates.reverse()}
+            {store.isAsc ? (
+              <>
+                {dynamicDates[0]}-{dynamicDates[1]}
+              </>
+            ) : (
+              <>
+                {dynamicDates[1]}-{dynamicDates[0]}
+              </>
+            )}
             <p style={{ color: 'white' }}></p>
           </div>
         </div>

@@ -7,6 +7,8 @@ import { getComponentsSizes } from '../../utils/sizes';
 import { isEqual } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
+import { getFixedDates } from '../../utils/common';
+import { start } from 'repl';
 
 const TypeSwitcher = ({
   visibleTypes,
@@ -36,17 +38,17 @@ const TypeSwitcher = ({
     </div>
   );
 };
-const RedrawHeight = ({ items }: { items: { startAt: string | undefined; endAt: string | undefined }[] }) => {
+const RedrawHeight = ({ items }: { items: { startAt: DateTime; endAt: DateTime }[] }) => {
   const [, dispatch] = useContext(Context);
   /* eslint-disable react-hooks/exhaustive-deps */
   useEffect(() => {
     const dates = items.reduce(
       (res, cur) => {
-        if (cur.startAt && DateTime.fromISO(cur.startAt).ts < res.startAt) {
-          res.startAt = DateTime.fromISO(cur.startAt).startOf('month').ts;
+        if (cur.startAt && cur.startAt.ts < res.startAt) {
+          res.startAt = cur.startAt.startOf('month').ts;
         }
-        if (cur.endAt && DateTime.fromISO(cur.endAt).ts > res.endAt) {
-          res.endAt = DateTime.fromISO(cur.endAt).endOf('month').ts;
+        if (cur.endAt && cur.endAt.ts > res.endAt) {
+          res.endAt = cur.endAt.endOf('month').ts;
         }
         return res;
       },
@@ -109,13 +111,13 @@ const TimeTable = (props: { events: CalendarEvents; eventsTypes: string }) => {
   return (
     <div className="Kalend__Calendar__table-wrapper">
       <TypeSwitcher visibleTypes={visibleTypes} allTypes={allTypes} change={setVisibleTypes} />
-      <div
-        style={style}
-        className="Kalend__Calendar__table Kalend__CalendarBody"
-        id="Kalend__timetable"
-        // onScroll={handleScroll}
-      >
-        <RedrawHeight items={[...items.map((item) => Object.values(item)[0]).flat()].map(({ startAt, endAt }) => ({ startAt, endAt }))} />
+      <div style={style} className="Kalend__Calendar__table Kalend__CalendarBody" id="Kalend__timetable">
+        <RedrawHeight
+          items={[...items.map((item) => Object.values(item)[0]).flat()].map((event) => {
+            const { startAt, endAt } = getFixedDates(event);
+            return { startAt, endAt };
+          })}
+        />
         <CalendarBodyMonths
           width={store.width}
           startStep={store.startStep}

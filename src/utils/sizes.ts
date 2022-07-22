@@ -1,5 +1,6 @@
 import { DateTime } from 'luxon';
 import { CalendarEvent, EventState } from '../common/interface';
+import { getFixedDates, dayZeros } from './common';
 
 const findIntersectedTop = (sizes: EventState[], offsetTop: number, i: number) => {
   return sizes
@@ -114,21 +115,12 @@ export const getComponentsSizes = (
   height: number,
   type: string,
 ) => {
-  const sizesWithTop = components.map(({ startAt: startDate, endAt: endDate, summary, id, meta }) => {
-    const dayZeros = {
-      hour: 0,
-      minute: 0,
-      second: 0,
-      millisecond: 0,
-    };
-
+  const sizesWithTop = components.map((event) => {
+    const { startAt, endAt, summary, id, meta } = getFixedDates(event);
     const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
-    const firstVal = startDate ? DateTime.fromISO(startDate).startOf('month').set(dayZeros) : DateTime.local().startOf('month');
-    const secondVal = endDate ? DateTime.fromISO(endDate).endOf('month').set(dayZeros) : DateTime.local().endOf('month');
-    const startAt = firstVal <= secondVal ? firstVal : secondVal;
-    const endAt = secondVal >= firstVal ? secondVal : firstVal;
     const offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);
     const eventHeight = Math.round(endAt.diff(startAt, 'day').days * scaleCoeff);
+
     return {
       offsetTop: isAsc ? offset + 1 : height - offset - eventHeight - 1,
       height: eventHeight,

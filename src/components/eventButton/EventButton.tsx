@@ -4,7 +4,6 @@ import { EventStyle, CalendarEvent, EventState } from '../../common/interface';
 import { Store } from '../../context/store';
 import { onMoveEvent, onResizeEvent } from './utils/dragging';
 import { disableTouchDragging, eventButtonInitialState } from './EventButton.utils';
-import ButtonBase from '../buttonBase/ButtonBase';
 import Event from './eventNormal/EventNormal';
 import stateReducer from '../../utils/stateReducer';
 import { getDateFromPosition } from '../../utils/sizes';
@@ -43,7 +42,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
     // alignItems: meta?.centerText ? 'center' : 'inherit',
   };
 
-  const handleEventClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleEventClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -143,7 +142,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
    * remove listeners clean long click timeout and reset state
    * @param e
    */
-  const onMouseUp = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onMouseUp = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     // clean listeners
     document.removeEventListener('mouseup', onMouseUp as any, true);
     document.removeEventListener('mousemove', onMove, true);
@@ -215,7 +214,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
     document.addEventListener('mouseup', onMouseUpResize as any, true);
   };
 
-  const onMouseDownLong = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onMouseDownLong = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setState('isDragging', true);
     draggingRef.current = true;
 
@@ -234,7 +233,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
    * Initial long press click/touch on event
    * @param e
    */
-  const onMouseDown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const onMouseDown = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
 
@@ -249,10 +248,12 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
   };
 
   return (
-    <ButtonBase
+    <div
       id={item.id}
       style={style}
-      className={`Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${(item.meta?.type || '')
+      className={`Kalend__button Kalend__ButtonBase Kalend__Event-normal ${state.isDragging ? 'Kalend__EventButton__elevation' : ''} ${(
+        item.meta?.type || ''
+      )
         .split(' ')
         .join('-')
         .toLowerCase()}_background-color`}
@@ -297,7 +298,7 @@ const EventButton = ({ item, store }: { item: EventState; store }) => {
         onMouseDown={onMouseDownResize}
         onMouseUp={onMouseUpResize}
       />
-    </ButtonBase>
+    </div>
   );
 };
 

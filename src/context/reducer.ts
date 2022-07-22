@@ -25,11 +25,7 @@ const Reducer = (state: Store, action) => {
         height: getHeight(action.payload.startStep, action.payload.finishStep, state.scaleCoeff),
       };
     case 'scaleCoeff':
-      //const oldCoeff = state.scaleCoeff;
       const scaleCoeff = action.payload > 0 ? state.scaleCoeff / 2 : state.scaleCoeff * 2;
-      //const coeffChange = oldCoeff / scaleCoeff;
-      //const startStep = Math.ceil(state.startStep * coeffChange);
-      //const finishStep = Math.ceil(state.finishStep * coeffChange);
       return { ...state, scaleCoeff, height: getHeight(state.startStep, state.finishStep, scaleCoeff) };
     case 'style':
       return {
