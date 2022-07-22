@@ -1,9 +1,8 @@
 @import './styles/main.scss';
 @import './styles/theme.scss';
-@import './components/buttonBase/ButtonBase.scss';
 @import './components/TimeTable/TimeTable.scss';
 @import './components/TimeTable/EventsPanel/EventsPanel.scss';
 @import './components/TimeTable/EventsPanel/CalendarBodyMonths/CalendarBodyMonths.scss';
 @import './components/eventButton/EventButton.scss';
-@import './components/eventButton/components/eventSummary/EventSummary.scss';
+@import './components/eventButton/components/even/Event.scss';
 @import './components/controls/controls.scss';

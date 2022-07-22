@@ -3,8 +3,8 @@ import React from 'react';
 import { EventStyle, CalendarEvent, EventState } from '../../common/interface';
 import { Store } from '../../context/store';
 import { onMoveEvent, onResizeEvent } from './utils/dragging';
-import { disableTouchDragging, eventButtonInitialState } from './EventButton.utils';
-import Event from './eventNormal/EventNormal';
+import { disableTouchDragging, eventButtonInitialState } from './utils/EventButton.utils';
+import Event from './Event/Event';
 import stateReducer from '../../utils/stateReducer';
 import { getDateFromPosition } from '../../utils/sizes';
 

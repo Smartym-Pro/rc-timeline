@@ -8,7 +8,6 @@ import { isEqual } from 'lodash';
 import React, { useContext, useEffect, useState } from 'react';
 import { DateTime } from 'luxon';
 import { getFixedDates } from '../../utils/common';
-import { start } from 'repl';
 
 const TypeSwitcher = ({
   visibleTypes,

@@ -1,4 +1,4 @@
-import { EventButtonInitialState } from '../components/eventButton/EventButton.utils';
+import { EventButtonInitialState } from '../components/EventButton/utils/EventButton.utils';
 const StateReducer = (state: EventButtonInitialState, action): EventButtonInitialState => {
   // Replace whole state
   if (!action.payload) {

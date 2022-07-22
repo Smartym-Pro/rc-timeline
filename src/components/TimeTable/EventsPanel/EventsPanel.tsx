@@ -1,8 +1,8 @@
 import { DateTime } from 'luxon';
-import { disableTouchDragging } from '../../eventButton/EventButton.utils';
+import { disableTouchDragging } from '../../EventButton/utils/EventButton.utils';
 import { createVerticalMonths } from '../../../utils/common';
 import { useRef, useState } from 'react';
-import EventButton from '../../eventButton/EventButton';
+import EventButton from '../../EventButton/EventButton';
 import { getDateFromPosition } from '../../../utils/sizes';
 import React from 'react';
 import { EventState } from '../../../common/interface';

@@ -1,7 +1,7 @@
 import React from 'react';
 import TimeTable from './components/TimeTable/TimeTable';
 import { CalendarEvents } from './common/interface';
-import { TopControl } from './components/controls/TopControl';
+import { TopControl } from './components/Controls/TopControl';
 
 const Calendar = (props: { items: CalendarEvents }) => {
   const eventsTypes = Object.keys(props.items).join(',');
