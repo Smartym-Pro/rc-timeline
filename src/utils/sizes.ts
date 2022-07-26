@@ -1,6 +1,36 @@
 import { DateTime } from 'luxon';
 import { CalendarEvent, EventState } from '../common/interface';
-import { getFixedDates, dayZeros } from './common';
+import { getFixedDates, dayZeros, DatesValues } from './common';
+
+export const getOffsetTopAndHeight = (
+  dateEvents: DatesValues[],
+  event: DatesValues,
+  startAt: DateTime,
+  endAt: DateTime,
+  start: number,
+  scaleCoeff: number,
+) => {
+  const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
+  let offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);
+  let eventHeight = Math.round(endAt.diff(startAt, 'day').days * scaleCoeff);
+  const endAtSameMonth = dateEvents.find(
+    (ev) => ev.id !== event.id && ev.endAt.year === event.startAt.year && ev.endAt.month === event.startAt.month,
+  );
+  const startAtSameMonth = dateEvents.find(
+    (ev) => ev.id !== event.id && ev.startAt.year === event.endAt.year && ev.startAt.month === event.endAt.month,
+  );
+  if (endAtSameMonth) {
+    const half = endAtSameMonth.endAt.day / 2;
+    offset = offset + half;
+    eventHeight = eventHeight - half;
+  }
+
+  if (startAtSameMonth) {
+    const half = event.endAt.day / 2;
+    eventHeight = eventHeight - half;
+  }
+  return { offset, eventHeight };
+};
 
 const findIntersectedTop = (sizes: EventState[], offsetTop: number, i: number) => {
   return sizes
@@ -115,11 +145,10 @@ export const getComponentsSizes = (
   height: number,
   type: string,
 ) => {
-  const sizesWithTop = components.map((event) => {
-    const { startAt, endAt, summary, id, meta } = getFixedDates(event);
-    const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
-    const offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);
-    const eventHeight = Math.round(endAt.diff(startAt, 'day').days * scaleCoeff);
+  const dateEvents = components.map(getFixedDates);
+  const sizesWithTop = dateEvents.map((event) => {
+    const { startAt, endAt, summary, id, meta } = event;
+    const { offset, eventHeight } = getOffsetTopAndHeight(dateEvents, event, startAt, endAt, start, scaleCoeff);
 
     return {
       offsetTop: isAsc ? offset + 1 : height - offset - eventHeight - 1,

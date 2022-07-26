@@ -45,7 +45,15 @@ export const dayZeros = {
   millisecond: 0,
 };
 
-export const getFixedDates = (event: CalendarEvent) => {
+export interface DatesValues {
+  startAt: DateTime;
+  endAt: DateTime;
+  summary?: string;
+  id?: string;
+  meta: any;
+}
+
+export const getFixedDates = (event: CalendarEvent): DatesValues => {
   const { startAt: startDate, endAt: endDate, summary, id, meta } = assignSameMonthIfNoDates(event);
   const firstVal = DateTime.fromISO(startDate).startOf('month').set(dayZeros);
   const secondVal = DateTime.fromISO(endDate).endOf('month').set(dayZeros);
