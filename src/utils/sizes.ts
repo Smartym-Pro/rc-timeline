@@ -13,20 +13,20 @@ export const getOffsetTopAndHeight = (
   const calendarStart = DateTime.local().plus({ month: start }).startOf('month').set(dayZeros);
   let offset = Math.round(startAt.diff(calendarStart, 'day').days * scaleCoeff);
   let eventHeight = Math.round(endAt.diff(startAt, 'day').days * scaleCoeff);
-  const endAtSameMonth = dateEvents.find(
+  const eventsEndedWhenThisEventStarts = dateEvents.find(
     (ev) => ev.id !== event.id && ev.endAt.year === event.startAt.year && ev.endAt.month === event.startAt.month,
   );
-  const startAtSameMonth = dateEvents.find(
+  const eventsStartedWhenThisEventEnds = dateEvents.find(
     (ev) => ev.id !== event.id && ev.startAt.year === event.endAt.year && ev.startAt.month === event.endAt.month,
   );
-  if (endAtSameMonth) {
-    const half = endAtSameMonth.endAt.day / 2;
+  if (eventsEndedWhenThisEventStarts) {
+    const half = (eventsEndedWhenThisEventStarts.endAt.day / 2) * scaleCoeff;
     offset = offset + half;
     eventHeight = eventHeight - half;
   }
 
-  if (startAtSameMonth) {
-    const half = event.endAt.day / 2;
+  if (eventsStartedWhenThisEventEnds) {
+    const half = (event.endAt.day / 2) * scaleCoeff;
     eventHeight = eventHeight - half;
   }
   return { offset, eventHeight };
