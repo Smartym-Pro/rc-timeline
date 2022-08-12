@@ -21,8 +21,8 @@ const TypeSwitcher = ({
   const notShownTypes = allTypes.filter((type) => !visibleTypes.includes(type));
   return (
     <div className="Kalend__Calendar__table__type-switcher">
-      {[...visibleTypes, ...notShownTypes].map((type) => (
-        <div>
+      {[...visibleTypes, ...notShownTypes].map((type, index) => (
+        <div key={type + index}>
           <input
             type="checkbox"
             checked={visibleTypes.includes(type)}
